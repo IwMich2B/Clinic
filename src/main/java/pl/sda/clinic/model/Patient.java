@@ -21,15 +21,15 @@ public class Patient {
     private String login;
     @NotNull
     @Size(min = 8)
-    private String password;
-    @NotNull
-    @Size(min = 11)
-    private String pesel;
+            private String password;
+            @NotNull
+            @Size(min = 11)
+            private String pesel;
 
-    public Patient() {
-    }
+            public Patient() {
+            }
 
-    public Patient(Long id, String firstName, String lastName, String login, String password, String pesel) {
+            public Patient(Long id, String firstName, String lastName, String login, String password, String PESEL) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -82,7 +82,7 @@ public class Patient {
         return pesel;
     }
 
-    public void setPSEL(String PESEL) {
+    public void setPesel(String pesel) {
         this.pesel = pesel;
     }
 
@@ -90,11 +90,11 @@ public class Patient {
     public String toString() {
         return "Patient{" +
                 "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                ", pesel='" + pesel + '\'' +
+                ", firstName=" + firstName + '\'' +
+                ", lastName=" + lastName + '\'' +
+                ", login=" + login + '\'' +
+                ", password=" + password + '\'' +
+                ", pesel=" + pesel + '\'' +
                 '}';
     }
 }

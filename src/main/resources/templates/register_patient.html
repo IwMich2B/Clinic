@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pl"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Rejestracja</title>
+</head>
+<body>
+
+<h1 class="text-center">Zarejestruj się</h1>
+<form method="post" action="/register" th:action="@{/register}" th:object="${patient}">
+    <table>
+        <thead>
+        <tr>
+            <td>id (DO WYWALENIA)</td>
+            <td>nazwa użytkownika (min. 8 znaków)</td>
+            <td>hasło (min. 11 znaków)</td>
+            <td>imię</td>
+            <td>nazwisko (min. 6 znaków)</td>
+            <td>nr PESEL</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><!-- TODO BRAKUJE WARUNKÓW -->
+                <input type="number" th:field="*{id}"/>
+            </td>
+            <td>
+                <input type="text" th:field="*{login}"/>
+            </td>
+            <td>
+                <input type="text" th:field="*{password}"/>
+            </td>
+            <td>
+                <input type="text" th:field="*{firstName}"/>
+            </td>
+            <td>
+                <input type="text" th:field="*{lastName}"/>
+            </td>
+            <td>
+                <input type="text" th:field="*{pesel}"/>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <button type="submit">ZATWIERDŹ</button>
+</form>
+
+</body>
+</html>
