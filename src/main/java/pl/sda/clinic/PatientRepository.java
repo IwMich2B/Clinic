@@ -12,37 +12,32 @@ public class PatientRepository implements IPatientRepository {
 
 
     @Autowired
-    PatientJpaRepository PatientJpaRepository;//USE JPA
-
-    /*@PostConstruct
-    public void init(){
-        pl.sda.clinic.PatientJpaRepository.save(PatientGenerator.generatePatients());
-    }*/
+    PatientJpaRepository patientJpaRepository;
 
     @Override
     public Patient createPatient(Patient patient) {
-        return PatientJpaRepository.save(patient);
+        return patientJpaRepository.save(patient);
     }
 
     @Override
     public Patient findPatient(String login) throws PatientNotFoundException {
-        return PatientJpaRepository.findByLogin(login);
+        return patientJpaRepository.findByLogin(login);
     }
 
     @Override
     public Patient updatePatient(Patient patient) throws PatientNotFoundException {
-        return PatientJpaRepository.save(patient);
+        return patientJpaRepository.save(patient);
     }
 
     @Override
     public boolean deletePatient(String login) throws PatientNotFoundException {
-        return PatientJpaRepository.deletePatientByLogin(login);
+        return patientJpaRepository.deletePatientByLogin(login);
     }
 
     @Override
     public List<Patient> findAll() {
         List<Patient> patients = new ArrayList<>();
-                PatientJpaRepository.findAll().forEach(patients::add);//!!!
-                return patients;
+        patientJpaRepository.findAll().forEach(patients::add);
+        return patients;
     }
 }
