@@ -20,8 +20,8 @@ public class H2Repository implements IPatientRepository {
     }*/
 
     @Override
-    public Patient createPatient(Patient Patient) {
-        return PatientJpaRepository.save(Patient);
+    public Patient createPatient(Patient patient) {
+        return PatientJpaRepository.save(patient);
     }
 
     @Override
@@ -30,8 +30,8 @@ public class H2Repository implements IPatientRepository {
     }
 
     @Override
-    public Patient updatePatient(Patient Patient) throws PatientNotFoundException {
-        return PatientJpaRepository.save(Patient);
+    public Patient updatePatient(Patient patient) throws PatientNotFoundException {
+        return PatientJpaRepository.save(patient);
     }
 
     @Override
@@ -41,9 +41,8 @@ public class H2Repository implements IPatientRepository {
 
     @Override
     public List<Patient> findAll() {
-        //Iterable<Patient> all = pl.sda.clinic.PatientJpaRepository.findAll(); //??
-        List<Patient> Patients = new ArrayList<>();
-                PatientJpaRepository.findAll().forEach(Patients::add);//!!!
-                return Patients;
+        List<Patient> patients = new ArrayList<>();
+                PatientJpaRepository.findAll().forEach(patients::add);//!!!
+                return patients;
     }
 }
