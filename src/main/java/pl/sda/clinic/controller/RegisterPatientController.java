@@ -21,11 +21,11 @@ public class RegisterPatientController {
 
     @RequestMapping(path = "/register", method = RequestMethod.POST)
     public String addUser(Patient patient
-                          ,BindingResult bindingResult
+            , BindingResult bindingResult
                           //, Model model
-                          ) {
+    ) {
 
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             bindingResult.getAllErrors().
                     //forEach(LOGGER::info);
                             forEach(LOGGER::warn);
@@ -36,7 +36,7 @@ public class RegisterPatientController {
     }
 
     @GetMapping("/register")
-    public String addUserForm(Patient patient){
+    public String addUserForm(Patient patient) {
         return "register_patient";
     }
 
