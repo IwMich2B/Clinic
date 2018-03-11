@@ -24,7 +24,7 @@ public class Patient {
             private String password;
             @NotNull
             @Size(min = 11)
-            private String PESEL;
+            private String pesel;
 
             public Patient() {
             }
@@ -35,7 +35,7 @@ public class Patient {
         this.lastName = lastName;
         this.login = login;
         this.password = password;
-        this.PESEL = PESEL;
+        this.pesel = pesel;
     }
 
     public Long getId() {
@@ -78,12 +78,12 @@ public class Patient {
         this.password = password;
     }
 
-    public String getPESEL() {
-        return PESEL;
+    public String getPesel() {
+        return pesel;
     }
 
-    public void setPSEL(String PESEL) {
-        this.PESEL = PESEL;
+    public void setPesel(String pesel) {
+        this.pesel = pesel;
     }
 
     @Override
@@ -94,7 +94,7 @@ public class Patient {
                 ", lastName=" + lastName + '\'' +
                 ", login=" + login + '\'' +
                 ", password=" + password + '\'' +
-                ", PSEL=" + PESEL + '\'' +
+                ", pesel=" + pesel + '\'' +
                 '}';
     }
 }

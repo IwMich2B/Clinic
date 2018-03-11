@@ -12,10 +12,10 @@
         <thead>
         <tr>
             <td>id (DO WYWALENIA)</td>
-            <td>nazwa użytkownika</td>
-            <td>hasło</td>
+            <td>nazwa użytkownika (min. 8 znaków)</td>
+            <td>hasło (min. 11 znaków)</td>
             <td>imię</td>
-            <td>nazwisko</td>
+            <td>nazwisko (min. 6 znaków)</td>
             <td>nr PESEL</td>
         </tr>
         </thead>
@@ -28,7 +28,7 @@
                 <input type="text" th:field="*{login}"/>
             </td>
             <td>
-                <input type="password" th:field="*{password}"/>
+                <input type="text" th:field="*{password}"/>
             </td>
             <td>
                 <input type="text" th:field="*{firstName}"/>
@@ -37,7 +37,7 @@
                 <input type="text" th:field="*{lastName}"/>
             </td>
             <td>
-                <input type="text" th:field="*{PESEL}"/>
+                <input type="text" th:field="*{pesel}"/>
             </td>
         </tr>
         </tbody>

@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface IPatientRepository {
 
-    Patient createPatient(Patient Patient);
+    Patient createPatient(Patient patient);
 
     Patient findPatient(String login) throws PatientNotFoundException;
 
-    Patient updatePatient(Patient Patient) throws PatientNotFoundException;
+    Patient updatePatient(Patient patient) throws PatientNotFoundException;
 
     boolean deletePatient(String login) throws PatientNotFoundException;
 

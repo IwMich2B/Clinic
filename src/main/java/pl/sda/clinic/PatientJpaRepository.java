@@ -6,5 +6,5 @@ import pl.sda.clinic.model.Patient;
 public interface PatientJpaRepository extends CrudRepository<Patient,Long> {
 
     public Patient findByLogin(String login);
-    public Boolean deleteUserByLogin(String login);
+    public Boolean deletePatientByLogin(String login);
 }

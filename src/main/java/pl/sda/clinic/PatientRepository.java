@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class H2Repository implements IPatientRepository {
+public class PatientRepository implements IPatientRepository {
 
 
     @Autowired
