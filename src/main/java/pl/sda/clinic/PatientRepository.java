@@ -15,23 +15,35 @@ public class PatientRepository implements IPatientRepository {
     PatientJpaRepository patientJpaRepository;
 
     @Override
-    public Patient createPatient(Patient patient) {
-        return patientJpaRepository.save(patient);
+    public Patient createPatient(Patient patient) throws PatientAlreadyExistsException {
+
+        if (patientJpaRepository.findByLogin(patient.getLogin()) == null) {
+            return patientJpaRepository.save(patient);
+        } else
+            throw new PatientAlreadyExistsException(patient.getLogin());
+
     }
 
     @Override
-    public Patient findPatient(String login) throws PatientNotFoundException {
-        return patientJpaRepository.findByLogin(login);
+    public Patient findPatientByLogin(String login) throws PatientNotFoundException {
+
+        Patient patient = patientJpaRepository.findByLogin(login);
+        if (patient == null)
+            throw new PatientNotFoundException(login);
+        else
+            return patient;
     }
 
     @Override
     public Patient updatePatient(Patient patient) throws PatientNotFoundException {
+        //TODO?
         return patientJpaRepository.save(patient);
     }
 
     @Override
     public boolean deletePatient(String login) throws PatientNotFoundException {
-        return patientJpaRepository.deletePatientByLogin(login);
+        //TODO?
+        return patientJpaRepository.deleteByLogin(login);
     }
 
     @Override

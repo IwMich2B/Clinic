@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface IPatientRepository {
 
-    Patient createPatient(Patient patient);
+    Patient createPatient(Patient patient) throws PatientAlreadyExistsException;
 
-    Patient findPatient(String login) throws PatientNotFoundException;
+    Patient findPatientByLogin(String login) throws PatientNotFoundException;
 
     Patient updatePatient(Patient patient) throws PatientNotFoundException;
 
