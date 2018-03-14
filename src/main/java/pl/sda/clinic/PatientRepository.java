@@ -2,6 +2,7 @@ package pl.sda.clinic;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import pl.sda.clinic.model.Patient;
 
 import java.util.ArrayList;
@@ -17,10 +18,10 @@ public class PatientRepository implements IPatientRepository {
     @Override
     public Patient createPatient(Patient patient) throws PatientAlreadyExistsException {
 
-        if (patientJpaRepository.findByLogin(patient.getLogin()) == null) {
-            return patientJpaRepository.save(patient);
-        } else
+        if (patientJpaRepository.existsByLogin(patient.getLogin())) {
             throw new PatientAlreadyExistsException(patient.getLogin());
+        } else
+            return patientJpaRepository.save(patient);
 
     }
 
@@ -41,9 +42,14 @@ public class PatientRepository implements IPatientRepository {
     }
 
     @Override
-    public boolean deletePatient(String login) throws PatientNotFoundException {
-        //TODO?
-        return patientJpaRepository.deleteByLogin(login);
+    @Transactional
+    public void deletePatient(String login) throws PatientNotFoundException {
+
+        if (patientJpaRepository.existsByLogin(login)) {
+            patientJpaRepository.deleteByLogin(login);
+        } else
+            throw new PatientNotFoundException(login);
+
     }
 
     @Override

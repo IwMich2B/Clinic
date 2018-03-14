@@ -12,7 +12,7 @@ public interface IPatientRepository {
 
     Patient updatePatient(Patient patient) throws PatientNotFoundException;
 
-    boolean deletePatient(String login) throws PatientNotFoundException;
+    void deletePatient(String login) throws PatientNotFoundException;
 
     List<Patient> findAll();
 
