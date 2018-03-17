@@ -3,8 +3,6 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
-
-
     <groupId>clinic.pl</groupId>
     <artifactId>Clinic</artifactId>
     <version>0.1</version>
@@ -17,74 +15,83 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 <dependencies>
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-thymeleaf</artifactId>
-    <version>1.5.8.RELEASE</version>
-</dependency>
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-web</artifactId>
-    <version>1.5.8.RELEASE</version>
-</dependency>
-<!-- DODAC BOOTSTRAPA -->
-<!-- DODAC JQUERY -->
-<!--https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#using-boot-devtools-->
-<!-- DODAC devtools -->
-<!-- DODAC spring-boot-starter-test -->
-<dependency>
-    <groupId>org.springframework.data</groupId>
-    <artifactId>spring-data-commons</artifactId>
-    <version>1.13.8.RELEASE</version>
-</dependency>
-<dependency>
 
-    <groupId>org.webjars</groupId>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        <version>1.5.8.RELEASE</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+        <version>1.5.8.RELEASE</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.data</groupId>
+        <artifactId>spring-data-commons</artifactId>
+        <version>1.13.8.RELEASE</version>
+    </dependency>
+    <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>bootstrap</artifactId>
+        <version>3.3.7-1</version>
+    </dependency>
+    <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>jquery</artifactId>
+        <version>3.3.1</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-jpa</artifactId>
+        <version>1.5.8.RELEASE</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.data</groupId>
+        <artifactId>spring-data-jpa</artifactId>
+        <version>1.11.8.RELEASE</version>
+    </dependency>
+    <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <version>1.4.196</version>
+    </dependency>
 
-    <artifactId>bootstrap</artifactId>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
 
-    <version>3.3.7-1</version>
 
-</dependency>
-
-<dependency>
-
-    <groupId>org.webjars</groupId>
-
-    <artifactId>jquery</artifactId>
-
-    <version>3.3.1</version>
-
-</dependency>
-<dependency>
-
-    <groupId>org.springframework.boot</groupId>
-
-    <artifactId>spring-boot-starter-data-jpa</artifactId>
-
-    <version>1.5.8.RELEASE</version>
-
-</dependency>
-
-<dependency>
-
-    <groupId>org.springframework.data</groupId>
-
-    <artifactId>spring-data-jpa</artifactId>
-
-    <version>1.11.8.RELEASE</version>
-
-</dependency>
-
-<dependency>
-
-    <groupId>com.h2database</groupId>
-
-    <artifactId>h2</artifactId>
-
-    <version>1.4.196</version>
-
-</dependency>
+    <!--<dependency>-->
+        <!--<groupId>org.springframework.security</groupId>-->
+        <!--<artifactId>spring-security-config</artifactId>-->
+        <!--<version>5.0.3.RELEASE</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+        <!--<groupId>org.springframework.security</groupId>-->
+        <!--<artifactId>spring-security-core</artifactId>-->
+        <!--<version>5.0.3.RELEASE</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+        <!--<groupId>org.springframework.security</groupId>-->
+        <!--<artifactId>spring-security-web</artifactId>-->
+        <!--<version>3.2.0.RELEASE</version>-->
+    <!--</dependency>-->
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-webmvc</artifactId>
+        <version>4.3.13.RELEASE</version>
+    </dependency>
+    <dependency>
+        <groupId>postgresql</groupId>
+        <artifactId>postgresql</artifactId>
+        <version>9.1-901-1.jdbc4</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
 </dependencies>
 </project>
 
