@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css"
+          href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css"/>
+</head>
+<body>
+<h1 class="text-center">Zaloguj się</h1>
+<div class="container">
+    <form method="post" th:action="@{/login}" th:object="${patient}">
+        <table>
+            <thead>
+            <div th:if="${param.error}" class="alert alert-danger">
+                Nieprawdłowy login lub hasło.
+            </div>
+            <div th:if="${param.logout}" class="alert alert-success">
+                Wylogowanie poprawne.
+            </div>
+            <div th:if="${param.session_expired}" class="alert alert-info">
+                Sesja została zakończona.
+            </div>
+            <tr>
+                <td>login:</td>
+                <td>hasło:</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <input type="text" th:field="*{login}"/>
+                </td>
+                <td>
+                    <input type="password" th:field="*{password}"/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <button type="submit">ZALOGUJ</button>
+    </form>
+</div>
+</body>
+</html>
