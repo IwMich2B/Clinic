@@ -141,11 +141,14 @@ public class Patient {
     public String toString() {
         return "Patient{" +
                 "id=" + id +
-                ", firstName=" + firstName + '\'' +
-                ", lastName=" + lastName + '\'' +
-                ", login=" + login + '\'' +
-                ", password=" + password + '\'' +
-                ", pesel=" + pesel + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", retypedPassword='" + retypedPassword + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", pesel='" + pesel + '\'' +
                 '}';
     }
 }
