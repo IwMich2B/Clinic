@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css"
+          href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css"/>
+
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Menu</a>
+        </div>
+        <ul class="nav navbar-nav">
+
+            <li><a href="/menu">Strona główna</a></li>
+            <li><a href="/log">Zarejestruj</a> </li>
+            <li><a href="/umow">Zaloguj</a></li>
+            <li><a href="umow">Umów wizytę </a></li>
+            <li class="active"><a href="/odwolaj">Odwołaj wizytę </a></li>
+            <li><a href="umow">Sprawdź wizyty </a></li>
+
+
+
+        </ul>
+    </div>
+</nav>
+
+<h1 class="text-center">Lista Umówionych Wizyt</h1>
+<div class="container">
+    <table class="table table-bordered table-responsive-md" >
+
+
+        <thead>
+
+        <tr>
+
+            <td>id</td>
+            <td>Specjalizacja</td>
+            <td>Imie</td>
+            <td>Nazwisko</td>
+            <td>Dzień</td>
+            <td>Godzina</td>
+
+
+        </tr>
+
+        </thead>
+        <tbody>
+        <tr>
+
+        <th scope="row" class="pr-md-3 pr-5">
+            <input type="checkbox" class="filled-in" id ="checkbox"/>
+            <label for="checkbox" class="label-tabel"></label>
+        </th>
+            <td>Pediatra</td>
+            <td>Marcin</td>
+            <td>Mich</td>
+            <td>sobota</td>
+            <td>11:30</td>
+        </tr>
+        </tbody>
+    </table>
+    <button type="button" class="btn btn-info" value="">Anuluj</button>
+        </div>
+<script type="text/javascript"
+        src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+
+</body>
+</html>

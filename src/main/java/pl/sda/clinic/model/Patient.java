@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
+@Table(name = "patients")
 public class Patient {
 
     @Id
@@ -14,10 +15,12 @@ public class Patient {
 
     @NotNull
     @Size(min = 2, max = 50)
+    @Transient
     private String firstName;
 
     @NotNull
     @Size(min = 2, max = 50)
+    @Transient
     private String lastName;
 
     @NotNull
