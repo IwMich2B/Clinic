@@ -38,8 +38,10 @@ CREATE TABLE specjalizacja (
 
 );
 
+
+set search_path = public;
+ALTER TABLE doctors drop COLUMN specialization_id;
+ALTER TABLE doctors ADD specialization_id INT REFERENCES specjalizacja (id);
 ALTER TABLE patients ADD first_name VARCHAR(200),
   ADD last_name VARCHAR(200);
-
-
 

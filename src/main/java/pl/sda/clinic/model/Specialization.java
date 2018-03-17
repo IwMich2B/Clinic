@@ -1,15 +1,18 @@
 package pl.sda.clinic.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
+@Table(name = "specjalizacja")
 public class Specialization {
 
     @Id
+    @Column(name="id")
     private long id;
-
+    @Column(name="value")
     private String name;
 
     public Specialization() {
