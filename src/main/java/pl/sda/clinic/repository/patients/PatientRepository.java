@@ -1,9 +1,13 @@
-package pl.sda.clinic;
+package pl.sda.clinic.repository.patients;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import pl.sda.clinic.model.Patient;
+import pl.sda.clinic.repository.patients.IPatientRepository;
+import pl.sda.clinic.repository.patients.PatientAlreadyExistsException;
+import pl.sda.clinic.repository.patients.PatientJpaRepository;
+import pl.sda.clinic.repository.patients.PatientNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
