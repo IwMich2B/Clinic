@@ -11,18 +11,26 @@ import javax.validation.constraints.Size;
 @Table(name = "patients")
 public class Patient {
 
-    @Id
+    /*@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;*/
+
+    @Id
+    @SequenceGenerator(name="patients_seq",
+            sequenceName="patients_seq",
+            allocationSize=1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator="patients_seq")
     private Long id;
 
     @NotNull
     @Size(min = 2, max = 50)
-    @Column(name="first_name")
+    @Column(name = "first_name")
     private String firstName;
 
     @NotNull
     @Size(min = 2, max = 50)
-    @Column(name="last_name")
+    @Column(name = "last_name")
     private String lastName;
 
     @NotNull
@@ -35,14 +43,14 @@ public class Patient {
     private String password;
 
     @Transient //żeby nie zapisywało do bazy danych
-    @Size(min = 8, max = 128)
+    @Size(min = 8, max = 100)
     private String retypedPassword;
 
-    @Size(max = 100)
+    @Size(min = 3, max = 100)
     @Email
     private String email;
 
-    @Size(min = 5, max=10)
+    @Size(min = 5, max = 10)
     //@Pattern //TODO
     private String phone;
 
