@@ -36,3 +36,7 @@ CREATE TABLE specjalizacja (
   value VARCHAR(30)
 
 );
+
+ALTER TABLE patients ADD first_name VARCHAR(200),
+  ADD last_name VARCHAR(200);
+
