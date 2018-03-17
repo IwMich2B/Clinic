@@ -1,7 +1,5 @@
 package pl.sda.clinic.model;
 
-import org.hibernate.validator.constraints.Email;
-
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
@@ -15,36 +13,30 @@ public class Patient {
     private Long id;
 
     @NotNull
-    @Size(min = 2, max = 50, message = "{firstName.size}")//dodałam
+    @Size(min = 2, max = 50)
     private String firstName;
 
     @NotNull
-    @Size(min = 2, max = 50, message = "{lastName.size}")//dodałam
+    @Size(min = 2, max = 50)
     private String lastName;
 
     @NotNull
-    @Size(min = 6, max = 18, message = "{login.size}")//dodałam max
+    @Size(min = 6, max = 18)
     //@Pattern//dodałam
     private String login;
 
     @NotNull
-    @Size(min = 8, max = 128, message = "{password.size}")//dodałam max
+    @Size(min = 8, max = 128)
     private String password;
 
-    @Transient //dodałam
-    @Size(min = 8, max = 128, message = "{retypedPassword.size}") //dodałam
-    private String retypedPassword; //dodałam wraz z seterem i geterem
+    @Transient //żeby nie zapisywało do bazy danych
+    @Size(min = 8, max = 128)
+    private String retypedPassword;
 
     @NotNull
     @Size(min = 11)
-    @Digits(integer = 11, fraction = 0)//dodałam
-    //@ValidPesel(message = "{pesel.validPesel}") //dodałam
+    @Digits(integer = 11, fraction = 0)
     private String pesel;
-
-    /*
-    @Size(min = 3, max = 254)//dodałam
-    @Email(message="email.valid")//dodałam
-    private String email;//dodałam */
 
     public Patient() {
     }
