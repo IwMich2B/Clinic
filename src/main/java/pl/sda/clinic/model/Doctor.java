@@ -1,33 +1,36 @@
 package pl.sda.clinic.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Table(name="doctors")
 public class Doctor {
     @Id
-    private int id;
-
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id")
+    private long id;
     @NotNull
+    @Column(name="name")
     private String name;
 
     @NotNull
+    @Column(name="last_name")
     private String lastName;
 
-    private Specialization specialization;
+    @Column(name = "specialization_id")
+    private long specializationId;
 
     public Doctor() {
     }
 
-    public Doctor(int id, String name, String lastName, Specialization specialization) {
+    public Doctor(long id, String name, long specializationId) {
         this.id = id;
         this.name = name;
-        this.lastName = lastName;
-        this.specialization = specialization;
+        this.specializationId = specializationId;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -39,24 +42,8 @@ public class Doctor {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public Specialization getSpecialization() {
-        return specialization;
-    }
-
-    public void setSpecialization(Specialization specialization) {
-        this.specialization = specialization;
+    public long getSpecializationId() {
+        return specializationId;
     }
 
     @Override
@@ -64,8 +51,7 @@ public class Doctor {
         return "Doctor{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", specialization=" + specialization +
+                ", specializationId=" + specializationId +
                 '}';
     }
 }
