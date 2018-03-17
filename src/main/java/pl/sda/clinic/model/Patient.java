@@ -54,12 +54,14 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(Long id, String firstName, String lastName, String login, String password, String pesel) {
-        this.id = id;
+    public Patient(String firstName, String lastName, String login, String password, String retypedPassword, String email, String phone, String pesel) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.login = login;
         this.password = password;
+        this.retypedPassword = retypedPassword;
+        this.email = email;
+        this.phone = phone;
         this.pesel = pesel;
     }
 
