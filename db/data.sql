@@ -13,3 +13,9 @@ INSERT INTO visits(id_doctor,id_patient,hours_visit)values((select id from docto
 INSERT INTO visits(id_doctor,id_patient,hours_visit)values((select id from doctors where value ='Internista , Marczak'),(select id from patients where value='PESEL'),current_timestamp);
 INSERT INTO visits(id_doctor,id_patient,hours_visit)values((select id from doctors where value ='Ginekolog'),(select id from patients where value='PESEL'),current_timestamp);
 INSERT INTO visits(id_doctor,id_patient,hours_visit)values((select id from doctors where value ='Stomatolog'),(select id from patients where value='PESEL'),current_timestamp);
+
+
+INSERT INTO specjalizacja (value) values('Pediatra');
+INSERT INTO specjalizacja (value) values('Internista');
+INSERT INTO specjalizacja (value) values('Stomatolog');
+INSERT INTO specjalizacja (value) values('Ginekolog');
