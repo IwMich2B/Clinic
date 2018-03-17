@@ -1,5 +1,7 @@
 package pl.sda.clinic.model;
 
+import org.hibernate.validator.constraints.Email;
+
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
@@ -15,26 +17,34 @@ public class Patient {
 
     @NotNull
     @Size(min = 2, max = 50)
-    @Transient
+    @Column(name="first_name")
     private String firstName;
 
     @NotNull
     @Size(min = 2, max = 50)
-    @Transient
+    @Column(name="last_name")
     private String lastName;
 
     @NotNull
     @Size(min = 6, max = 18)
-    //@Pattern//dodałam
+    //@Pattern //TODO
     private String login;
 
     @NotNull
-    @Size(min = 8, max = 128)
+    @Size(min = 8, max = 100)
     private String password;
 
     @Transient //żeby nie zapisywało do bazy danych
     @Size(min = 8, max = 128)
     private String retypedPassword;
+
+    @Size(max = 100)
+    @Email
+    private String email;
+
+    @Size(min = 5, max=10)
+    //@Pattern //TODO
+    private String phone;
 
     @NotNull
     @Size(min = 11)
@@ -107,6 +117,22 @@ public class Patient {
 
     public void setPesel(String pesel) {
         this.pesel = pesel;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     @Override

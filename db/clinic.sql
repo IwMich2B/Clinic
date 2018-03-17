@@ -29,6 +29,7 @@ CREATE TABLE visits(
   cancelled boolean DEFAULT false
 
 );
+
 CREATE SEQUENCE specjalizacja_seq START 1 INCREMENT 1;
 CREATE TABLE specjalizacja (
 
