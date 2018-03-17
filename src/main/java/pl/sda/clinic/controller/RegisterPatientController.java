@@ -43,8 +43,6 @@ public class RegisterPatientController {
 
         boolean isValid = true;
 
-
-
         if (bindingResult.hasErrors()) {
             bindingResult.getAllErrors().
                     //forEach(LOGGER::info);
@@ -52,7 +50,7 @@ public class RegisterPatientController {
             isValid = false;
         }
 
-        if (!bindingResult.hasFieldErrors(patient.getPassword()) && !bindingResult.hasFieldErrors(patient.getPassword())
+        if (!bindingResult.hasFieldErrors(patient.getPassword()) && !bindingResult.hasFieldErrors(patient.getRetypedPassword())
                 && !patient.getPassword().equals(patient.getRetypedPassword())) {
             bindingResult.rejectValue("retypedPassword", "Passwords don't match", "Hasła nie są identyczne.");
             // void rejectValue(String field, String errorCode, String defaultMessage);
@@ -60,11 +58,10 @@ public class RegisterPatientController {
             isValid = false;
         }
 
-
         /*if (patientRepository.existsByLogin(patient.getLogin())) {
             bindingResult.rejectValue("login", "Patient already exists.", "Wybrany login jest zajęty.");
             isValid = false;
-        }*/  //TODO czy wystarczy złapanie tego poniższym catch'em ?
+        }*/  //TODO czy wystarczy złapanie tego poniższym catchem ?
 
 
         if (isValid) try {
