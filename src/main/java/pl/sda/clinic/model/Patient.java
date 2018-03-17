@@ -22,7 +22,7 @@ public class Patient {
 
     @NotNull
     @Size(min = 6, max = 18)
-    //@Pattern//dodałam
+    //@Pattern //TODO?
     private String login;
 
     @NotNull
