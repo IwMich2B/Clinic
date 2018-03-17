@@ -36,7 +36,7 @@
     }
 
     /*form-control*/
-    .form-rebel{
+    .form-rebel {
         border-color: violet;
     }
 
@@ -50,16 +50,16 @@
 <!-- <header class="container"> --><!-- do  lewej, to samo z div zamiast header -->
 <header style="text-align:center;"><!-- wyśrodkowane, to samo z div zamiast header -->
     <h1>Zarejestruj się w przychodni</h1>
-    <p class="sub-header">Aby założyć konto, wypełnij poniższe pola.</p>
+    <p class="sub-header">Aby założyć konto, wypełnij poniższy formularz.</p>
     <br/>
 </header>
 
 <div class="container">
     <form method="post" action="/register" th:action="@{/register}" th:object="${patient}">
         <fieldset>
-            <legend>Twoje dane</legend>
+            <legend>Dane dostępowe konta</legend>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Wybierz login</label>
+                <label class="col-sm-2 col-form-label">Wybierz nazwę użytkownika (login)</label>
                 <div class="col-sm-10">
                     <input class="form-rebel" type="text" th:field="*{login}" placeholder="Login"
                            size="22" required="required" autofocus="autofocus"
@@ -75,16 +75,17 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Hasło</label>
+                <label class="col-sm-2 col-form-label">Ustaw hasło</label>
                 <div class="col-sm-10">
                     <input class="form-rebel" type="password" th:field="*{password}" placeholder="Hasło"
                            size="40" required="required" autocomplete="off"
                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" maxlength="128"
-                           title="Niepoprawny format hasła" />
+                           title="Niepoprawny format hasła"/>
                     <span>&nbsp;&ast;</span>
                     <small class="form-text text-muted"><br/>Hasło powinno zawierać od 8 do 100
                         znaków, w tym przynajmniej jedną wielką literę, jedną małę literę i jedną cyfrę.
-                    </small><mark>KOPIUJ-WKLEJ V1dloJy1LAa999Ns</mark>
+                    </small>
+                    <mark>KOPIUJ-WKLEJ V1dloJy1LAa999Ns</mark>
                     <p class="controller-error" if="${#fields.hasErrors('password')}"
                        th:errors="*{password}">Password error</p>
                 </div>
@@ -100,6 +101,9 @@
                        th:errors="*{retypedPassword}">RetypedPassword error.</p>
                 </div>
             </div>
+        </fieldset>
+        <fieldset>
+            <legend>Twoje dane osobowe</legend>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Imię</label>
                 <div class="col-sm-10">
@@ -119,7 +123,7 @@
                            pattern="[A-Za-z]{2}.*" maxlength="50"/>
                     <span>&nbsp;&ast;</span>
                     <p class="controller-error" if="${#fields.hasErrors('lastName')}"
-                       th:errors="*{lastName}"></p>
+                       th:errors="*{lastName}">LastName error.</p>
                 </div>
             </div>
             <div class="form-group row">
@@ -133,7 +137,32 @@
                        th:errors="*{pesel}">Pesel error.</p>
                 </div>
             </div>
-
+        </fieldset>
+        <br/>
+        <fieldset>
+            <legend>Twoje dane kontaktowe</legend>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Adres e-mailowy</label>
+                <div class="col-sm-10">
+                    <input class="form-rebel" type="email" th:field="*{email}" placeholder="me@example.org"
+                           size="40"
+                           maxlength="100"/>
+                    <p class="controller-error" if="${#fields.hasErrors('email')}"
+                       th:errors="*{email}">Email error.</p>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Numer telefonu
+                    <mark>html5 type (tel)</mark>
+                </label>
+                <div class="col-sm-10">
+                    <input class="form-rebel" type="tel" th:field="*{phone}" placeholder=""
+                           size="12"
+                           maxlength="10"/>
+                    <p class="controller-error" if="${#fields.hasErrors('phone')}"
+                       th:errors="*{phone}">Phone error.</p>
+                </div>
+            </div>
         </fieldset>
         <br/>
         <fieldset>
@@ -145,7 +174,7 @@
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" required="required"/>
-                    <label class="form-check-label"> Akceptuję <a href="./zasady">Ogólne zasady
+                    <label class="form-check-label">Akceptuję <a href="./zasady">Ogólne zasady
                         korzystania z konta</a>.&nbsp;&ast;</label>
                 </div>
             </div>
@@ -153,12 +182,10 @@
         <br/>
         <p>&ast;&nbsp;pola wymagane</p>
         <br/>
-        <p class="submit">
-            <button type="submit" class="btn btn-primary">Zarejestruj</button>&nbsp;
-            <button class="btn btn-secondary" onclick="window.history.back()">Anuluj</button><mark>TODO?</mark>
-        </p>
-
-
+        <span class="submit">
+            <button type="submit" class="btn btn-primary">Zarejestruj</button>
+            &nbsp;<button class="btn btn-secondary" onClick="window.location='/menu'">Anuluj (wróć do menu)</button>
+        </span>
     </form>
     <br/>
 </div>
