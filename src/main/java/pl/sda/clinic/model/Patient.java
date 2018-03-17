@@ -16,11 +16,11 @@ public class Patient {
     private Long id;*/
 
     @Id
-    @SequenceGenerator(name="patients_seq",
-            sequenceName="patients_seq",
+    @SequenceGenerator(name="patients_seqc",
+            sequenceName="patients_seqc",
             allocationSize=1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
-            generator="patients_seq")
+            generator="patients_seqc")
     private Long id;
 
     @NotNull
