@@ -10,4 +10,6 @@ public interface PatientJpaRepository extends CrudRepository<Patient, Long> {
     void deleteByLogin(String login);
 
     Boolean existsByLogin(String login);
+
+    Patient findPatientByLoginAndPassword(String login, String password);
 }

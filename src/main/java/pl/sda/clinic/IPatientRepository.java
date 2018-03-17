@@ -12,6 +12,8 @@ public interface IPatientRepository {
 
     Patient findPatientByLogin(String login) throws PatientNotFoundException;
 
+    Patient findPatientByLoginAndPassword(String login, String password);
+
     Patient updatePatient(Patient patient) throws PatientNotFoundException;
 
     void deletePatient(String login) throws PatientNotFoundException;

@@ -41,6 +41,11 @@ public class PatientRepository implements IPatientRepository {
     }
 
     @Override
+    public Patient findPatientByLoginAndPassword(String login, String password) {
+        return patientJpaRepository.findPatientByLoginAndPassword(login, password);
+    }
+
+    @Override
     public Patient updatePatient(Patient patient) throws PatientNotFoundException {
         //TODO?
         return patientJpaRepository.save(patient);
