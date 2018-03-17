@@ -29,6 +29,7 @@ CREATE TABLE visits(
   cancelled boolean DEFAULT false
 
 );
+
 CREATE SEQUENCE specjalizacja_seq START 1 INCREMENT 1;
 CREATE TABLE specjalizacja (
 
@@ -36,3 +37,9 @@ CREATE TABLE specjalizacja (
   value VARCHAR(30)
 
 );
+
+ALTER TABLE patients ADD first_name VARCHAR(200),
+  ADD last_name VARCHAR(200);
+
+
+
