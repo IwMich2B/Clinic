@@ -1,30 +1,50 @@
 package pl.sda.clinic.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.hibernate.validator.constraints.Email;
+
+import javax.persistence.*;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
 public class Patient {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @NotNull
+    @Size(min = 2, max = 50, message = "{firstName.size}")//dodałam
     private String firstName;
+
     @NotNull
+    @Size(min = 2, max = 50, message = "{lastName.size}")//dodałam
     private String lastName;
+
     @NotNull
-    @Size(min = 6)
+    @Size(min = 6, max = 18, message = "{login.size}")//dodałam max
+    //@Pattern//dodałam
     private String login;
+
     @NotNull
-    @Size(min = 8)
+    @Size(min = 8, max = 128, message = "{password.size}")//dodałam max
     private String password;
+
+    @Transient //dodałam
+    @Size(min = 8, max = 128, message = "{retypedPassword.size}") //dodałam
+    private String retypedPassword; //dodałam wraz z seterem i geterem
+
     @NotNull
     @Size(min = 11)
+    @Digits(integer = 11, fraction = 0)//dodałam
+    //@ValidPesel(message = "{pesel.validPesel}") //dodałam
     private String pesel;
+
+    /*
+    @Size(min = 3, max = 254)//dodałam
+    @Email(message="email.valid")//dodałam
+    private String email;//dodałam */
 
     public Patient() {
     }
@@ -76,6 +96,14 @@ public class Patient {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRetypedPassword() {
+        return retypedPassword;
+    }
+
+    public void setRetypedPassword(String retypedPassword) {
+        this.retypedPassword = retypedPassword;
     }
 
     public String getPesel() {
