@@ -3,47 +3,155 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Rejestracja</title>
+    <!--<link rel="stylesheet" type="text/css"
+          href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css"/>-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 </head>
+<style>
+
+    header {
+        margin-right: auto;
+        margin-left: auto;
+        /*width: 70%;*/
+        min-width: fit-content;
+    }
+
+    .sub-header {
+        line-height: 0.1em;
+        font-family: sans-serif;
+        font-size: 1em;
+        color: dimgrey;
+    }
+
+    /*form-control*/
+    .form-rebel{
+        border-color: violet;
+    }
+
+    .controller-error {
+        color: fuchsia
+    }
+
+</style>
 <body>
 
-<h1 class="text-center">Zarejestruj się</h1>
-<form method="post" action="/register" th:action="@{/register}" th:object="${patient}">
-    <table>
-        <thead>
-        <tr>
-            <td>id (DO WYWALENIA)</td>
-            <td>nazwa użytkownika (min. 6 znaków)</td>
-            <td>hasło (min. 8 znaków)</td>
-            <td>imię</td>
-            <td>nazwisko</td>
-            <td>PESEL (11 znaków)</td>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td><!-- TODO BRAKUJE WARUNKÓW -->
-                <input type="number" th:field="*{id}"/>
-            </td>
-            <td>
-                <input type="text" th:field="*{login}"/>
-            </td>
-            <td>
-                <input type="text" th:field="*{password}"/>
-            </td>
-            <td>
-                <input type="text" th:field="*{firstName}"/>
-            </td>
-            <td>
-                <input type="text" th:field="*{lastName}"/>
-            </td>
-            <td>
-                <input type="text" th:field="*{pesel}"/>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <button type="submit">ZATWIERDŹ</button>
-</form>
+<!-- <header class="container"> --><!-- do  lewej, to samo z div zamiast header -->
+<header style="text-align:center;"><!-- wyśrodkowane, to samo z div zamiast header -->
+    <h1>Zarejestruj się w przychodni</h1>
+    <p class="sub-header">Aby założyć konto, wypełnij poniższe pola.</p>
+    <br/>
+</header>
+
+<div class="container">
+    <form method="post" action="/register" th:action="@{/register}" th:object="${patient}">
+        <fieldset>
+            <legend>Twoje dane</legend>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Wybierz login</label>
+                <div class="col-sm-10">
+                    <input class="form-rebel" type="text" th:field="*{login}" placeholder="Login"
+                           size="22" required="required" autofocus="autofocus"
+                           pattern="[a-z]{1}[a-z0-9-._]{5,}" maxlength="18"
+                           title="Niepoprawny format loginu"/>
+                    <span>&nbsp;&ast;</span>
+                    <small class="form-text text-muted"><br/>Login powinien rozpoczynać się od litery,
+                        zawierać od 6 do 18 znaków, w tym tylko małe litery i cyfry oraz znaki: &ldquor;-&rdquo; &ldquo;.&rdquo;
+                        &ldquo;_&rdquo;
+                    </small>
+                    <p class="controller-error" if="${#fields.hasErrors('login')}"
+                       th:errors="*{login}">Loginn error</p>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Hasło</label>
+                <div class="col-sm-10">
+                    <input class="form-rebel" type="password" th:field="*{password}" placeholder="Hasło"
+                           size="40" required="required" autocomplete="off"
+                           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" maxlength="128"
+                           title="Niepoprawny format hasła" />
+                    <span>&nbsp;&ast;</span>
+                    <small class="form-text text-muted"><br/>Hasło powinno zawierać od 8 do 128
+                        znaków, w tym przynajmniej jedną wielką literę, jedną małę literę i jedną cyfrę.
+                    </small><mark>KOPIUJ-WKLEJ V1dloJy1LAa999Ns</mark>
+                    <p class="controller-error" if="${#fields.hasErrors('password')}"
+                       th:errors="*{password}">Password error</p>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Powtórz hasło</label>
+                <div class="col-sm-10">
+                    <input class="form-rebel" type="password" th:field="*{retypedPassword}" placeholder="Powtórz hasło"
+                           size="40" required="required" autocomplete="off"
+                           minlength="8" maxlength="128"/>
+                    <span>&nbsp;&ast;</span>
+                    <p class="controller-error" if="${#fields.hasErrors('retypedPassword')}"
+                       th:errors="*{retypedPassword}">RetypedPassword error.</p>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Imię</label>
+                <div class="col-sm-10">
+                    <input class="form-rebel" type="text" th:field="*{firstName}" placeholder="Imię"
+                           size="52" required="required"
+                           pattern="[A-Za-z]{2}.*" maxlength="50"/>
+                    <span>&nbsp;&ast;</span>
+                    <p class="controller-error" if="${#fields.hasErrors('firstName')}"
+                       th:errors="*{firstName}">FirstName error.</p>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Nazwisko</label>
+                <div class="col-sm-10">
+                    <input class="form-rebel" type="text" th:field="*{lastName}" placeholder="Nazwisko"
+                           size="52" required="required"
+                           pattern="[A-Za-z]{2}.*" maxlength="50"/>
+                    <span>&nbsp;&ast;</span>
+                    <p class="controller-error" if="${#fields.hasErrors('lastName')}"
+                       th:errors="*{lastName}"></p>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">PESEL</label>
+                <div class="col-sm-10">
+                    <input class="form-rebel" type="text" th:field="*{pesel}" placeholder="PESEL"
+                           size="11" required="required" inputmode="numeric"
+                           pattern="[0-9]{11}" minlength="11" maxlength="11"/>
+                    <span>&nbsp;&ast;</span>
+                    <p class="controller-error" if="${#fields.hasErrors('pesel')}"
+                       th:errors="*{pesel}">Pesel error.</p>
+                </div>
+            </div>
+
+        </fieldset>
+        <br/>
+        <fieldset>
+            <legend>Zgody</legend>
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" required="required"/>
+                    <label class="form-check-label">Akceptuję <a href="./regulamin">Regulamin przychodni</a>.&nbsp;&ast;</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" required="required"/>
+                    <label class="form-check-label"> Akceptuję <a href="./zasady">Ogólne zasady
+                        korzystania z konta</a>.&nbsp;&ast;</label>
+                </div>
+            </div>
+        </fieldset>
+        <br/>
+        <p>&ast;&nbsp;pola wymagane</p>
+        <br/>
+        <p class="submit">
+            <button type="submit" class="btn btn-primary">Zarejestruj</button>&nbsp;
+            <button class="btn btn-secondary" onclick="window.history.back()">Anuluj</button><mark>TODO?</mark>
+        </p>
+
+
+    </form>
+    <br/>
+</div>
+
+<!--<div style="clear: both"/>-->
 
 </body>
 </html>

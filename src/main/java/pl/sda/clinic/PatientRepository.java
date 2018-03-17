@@ -15,6 +15,11 @@ public class PatientRepository implements IPatientRepository {
     @Autowired
     PatientJpaRepository patientJpaRepository;
 
+   /* @Override
+    public Boolean existsByLogin(String login) {
+        return patientJpaRepository.existsByLogin(login);
+    }*/
+
     @Override
     public Patient createPatient(Patient patient) throws PatientAlreadyExistsException {
 

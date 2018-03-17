@@ -1,29 +1,41 @@
 package pl.sda.clinic.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
 public class Patient {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @NotNull
+    @Size(min = 2, max = 50)
     private String firstName;
+
     @NotNull
+    @Size(min = 2, max = 50)
     private String lastName;
+
     @NotNull
-    @Size(min = 6)
+    @Size(min = 6, max = 18)
+    //@Pattern//dodałam
     private String login;
+
     @NotNull
-    @Size(min = 8)
+    @Size(min = 8, max = 128)
     private String password;
+
+    @Transient //żeby nie zapisywało do bazy danych
+    @Size(min = 8, max = 128)
+    private String retypedPassword;
+
     @NotNull
     @Size(min = 11)
+    @Digits(integer = 11, fraction = 0)
     private String pesel;
 
     public Patient() {
@@ -76,6 +88,14 @@ public class Patient {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRetypedPassword() {
+        return retypedPassword;
+    }
+
+    public void setRetypedPassword(String retypedPassword) {
+        this.retypedPassword = retypedPassword;
     }
 
     public String getPesel() {

@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface IPatientRepository {
 
+    //Boolean existsByLogin(String login);
+
     Patient createPatient(Patient patient) throws PatientAlreadyExistsException;
 
     Patient findPatientByLogin(String login) throws PatientNotFoundException;
