@@ -46,11 +46,11 @@ public class Patient {
     @Size(min = 8, max = 100)
     private String retypedPassword;
 
-    @Size(min = 3, max = 100)
+    @Size(max = 100)
     @Email
     private String email;
 
-    @Size(min = 5, max = 10)
+    @Size(max = 10)
     //@Pattern //TODO
     private String phone;
 
