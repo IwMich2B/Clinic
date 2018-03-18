@@ -39,7 +39,7 @@ public class LoginController {
             session.setAttribute("patientLogin", patient.getLogin());
             session.setAttribute("patientId", patient.getId());
 
-            return "redirect:./specialization";
+            return "redirect:./order";
         }else{
             return "redirect:./login?error";
         }

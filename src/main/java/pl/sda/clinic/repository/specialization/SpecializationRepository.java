@@ -13,6 +13,7 @@ public class SpecializationRepository implements ISpecializationRepository {
     @Autowired
     SpecializationJpaRepository specializationJpaRepository;
 
+
     @Override
     public List<Specialization> findAll() {
 
@@ -22,5 +23,11 @@ public class SpecializationRepository implements ISpecializationRepository {
             specializations.add(specialization);
         }
         return specializations;
+    }
+
+    @Override
+    public String findNameByID(Long id) {
+        Specialization specialization = specializationJpaRepository.findById(id);
+        return specialization.getName();
     }
 }
