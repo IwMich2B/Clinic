@@ -1,16 +1,17 @@
 package pl.sda.clinic.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "specjalizacja", schema = "public")
 public class Specialization {
 
     @Id
-    @Column(name="id")
+    @SequenceGenerator(name="specjalizacja_seq",
+            sequenceName="specjalizacja_seq",
+            allocationSize=1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator="specjalizacja_seq")
     private long id;
     @Column(name="value")
     private String name;
@@ -18,7 +19,7 @@ public class Specialization {
     public Specialization() {
     }
 
-    public Specialization(final long id,final String name) {
+    public Specialization(long id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -37,5 +38,13 @@ public class Specialization {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Specialization{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

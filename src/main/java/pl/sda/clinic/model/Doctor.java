@@ -4,18 +4,21 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="doctors")
+@Table(name = "doctors")
 public class Doctor {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id")
+    @SequenceGenerator(name = "doctors_seq",
+            sequenceName = "doctors_seq",
+            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator = "doctors_seq")
     private long id;
     @NotNull
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
 
     @NotNull
-    @Column(name="last_name")
+    @Column(name = "last_name")
     private String lastName;
 
     @Column(name = "specialization_id")
@@ -24,9 +27,10 @@ public class Doctor {
     public Doctor() {
     }
 
-    public Doctor(long id, String name, long specializationId) {
+    public Doctor(long id, String name, String lastName, long specializationId) {
         this.id = id;
         this.name = name;
+        this.lastName = lastName;
         this.specializationId = specializationId;
     }
 
@@ -40,6 +44,26 @@ public class Doctor {
 
     public String getName() {
         return name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setSpecializationId(long specializationId) {
+        this.specializationId = specializationId;
     }
 
     public long getSpecializationId() {
