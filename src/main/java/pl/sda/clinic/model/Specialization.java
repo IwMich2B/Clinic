@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "specjalizacja")
+@Table(name = "specjalizacja", schema = "public")
 public class Specialization {
 
     @Id
@@ -29,5 +29,13 @@ public class Specialization {
 
     public String getName() {
         return name;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
