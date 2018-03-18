@@ -1,4 +1,4 @@
-package pl.sda.clinic;
+package pl.sda.clinic.repository.patient;
 
 public class PatientNotFoundException extends Exception {
 

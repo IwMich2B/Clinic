@@ -1,4 +1,4 @@
-package pl.sda.clinic;
+package pl.sda.clinic.repository.patient;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

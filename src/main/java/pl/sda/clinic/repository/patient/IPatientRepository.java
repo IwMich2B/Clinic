@@ -1,5 +1,6 @@
-package pl.sda.clinic;
+package pl.sda.clinic.repository.patient;
 
+import pl.sda.clinic.repository.patient.PatientAlreadyExistsException;
 import pl.sda.clinic.model.Patient;
 
 import java.util.List;

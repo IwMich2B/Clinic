@@ -2,7 +2,7 @@ package pl.sda.clinic.services;
 
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
-import pl.sda.clinic.PatientRepository;
+import pl.sda.clinic.repository.patient.PatientRepository;
 import pl.sda.clinic.dto.LoginForm;
 import pl.sda.clinic.model.Patient;
 
