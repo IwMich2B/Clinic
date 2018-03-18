@@ -33,7 +33,7 @@
 
             <select class="form-control" id="doctorList" name="doctorList">
                 <option th:each="dr : ${doctor}"
-                        th:value="${dr.name+' ' +dr.lastName}"
+                        th:value="${dr.id}"
                         th:text="${dr.name+' ' + dr.lastName}">
                 </option>
             </select>

@@ -4,14 +4,14 @@ import pl.sda.clinic.model.Specialization;
 
 public class SpecializationForm {
     private Specialization specialization;
-    private long specializationId;
+    private long id;
 
     public SpecializationForm() {
     }
 
     public SpecializationForm(Specialization specialization, long specializationId) {
         this.specialization = specialization;
-        this.specializationId = specializationId;
+        this.id = specializationId;
     }
 
     public Specialization getSpecialization() {
@@ -23,11 +23,11 @@ public class SpecializationForm {
     }
 
     public long getSpecializationId() {
-        return specializationId;
+        return id;
     }
 
     public void setSpecializationId(long specializationId) {
-        this.specializationId = specializationId;
+        this.id = specializationId;
     }
 }
 
