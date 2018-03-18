@@ -8,4 +8,8 @@ public class PatientNotFoundException extends Exception {
         super(ERROR + login);
     }
 
+    PatientNotFoundException(Long id) {
+        super(ERROR + id);
+    }
+
 }
