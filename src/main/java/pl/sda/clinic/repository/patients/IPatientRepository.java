@@ -10,6 +10,8 @@ public interface IPatientRepository {
 
     Patient createPatient(Patient patient) throws PatientAlreadyExistsException;
 
+    Patient findPatientById(Long id) throws PatientNotFoundException;
+
     Patient findPatientByLogin(String login) throws PatientNotFoundException;
 
     Patient findPatientByLoginAndPassword(String login, String password);

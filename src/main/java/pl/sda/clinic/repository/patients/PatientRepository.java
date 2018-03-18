@@ -4,10 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import pl.sda.clinic.model.Patient;
-import pl.sda.clinic.repository.patients.IPatientRepository;
-import pl.sda.clinic.repository.patients.PatientAlreadyExistsException;
-import pl.sda.clinic.repository.patients.PatientJpaRepository;
-import pl.sda.clinic.repository.patients.PatientNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +30,18 @@ public class PatientRepository implements IPatientRepository {
 
     }
 
+    @Override
+    public Patient findPatientById(Long id) throws PatientNotFoundException {
+
+        Patient patient = patientJpaRepository.findPatientById(id);
+
+        if (patient == null)
+            throw new PatientNotFoundException(id);
+        else
+            return patient;
+
+    }
+    
     @Override
     public Patient findPatientByLogin(String login) throws PatientNotFoundException {
 
