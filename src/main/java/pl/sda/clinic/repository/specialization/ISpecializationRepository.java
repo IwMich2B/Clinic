@@ -7,4 +7,5 @@ import java.util.List;
 public interface ISpecializationRepository {
 
     List<Specialization> findAll();
+    String findNameByID(Long id);
 }

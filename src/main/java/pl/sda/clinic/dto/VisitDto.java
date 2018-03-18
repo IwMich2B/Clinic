@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class VisitDto {
     private int id;
+    private String specializacja;
     private String name;
     private String lastname;
     private Date dateTime;
@@ -12,8 +13,9 @@ public class VisitDto {
     public VisitDto() {
     }
 
-    public VisitDto(int id, String name, String lastname, Date dateTime, String hoursVisit) {
+    public VisitDto(int id, String specializacja, String name, String lastname, Date dateTime, String hoursVisit) {
         this.id = id;
+        this.specializacja = specializacja;
         this.name = name;
         this.lastname = lastname;
         this.dateTime = dateTime;
@@ -26,6 +28,14 @@ public class VisitDto {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getSpecializacja() {
+        return specializacja;
+    }
+
+    public void setSpecializacja(String specializacja) {
+        this.specializacja = specializacja;
     }
 
     public String getName() {
@@ -59,5 +69,4 @@ public class VisitDto {
     public void setHoursVisit(String hoursVisit) {
         this.hoursVisit = hoursVisit;
     }
-
 }
