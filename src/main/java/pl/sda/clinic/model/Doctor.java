@@ -34,6 +34,26 @@ public class Doctor {
         this.specializationId = specializationId;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setSpecializationId(long specializationId) {
+        this.specializationId = specializationId;
+    }
+
     public long getId() {
         return id;
     }

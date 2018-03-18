@@ -40,6 +40,9 @@ CREATE TABLE specjalizacja (
 
 
 set search_path = public;
+ALTER TABLE visits DROP COLUMN hours_visit;
+ALTER TABLE visits ADD hours_visit VARCHAR(10);
+set search_path = public;
 ALTER TABLE doctors drop COLUMN specialization_id;
 ALTER TABLE doctors ADD specialization_id INT REFERENCES specjalizacja (id);
 ALTER TABLE patients ADD first_name VARCHAR(200),
