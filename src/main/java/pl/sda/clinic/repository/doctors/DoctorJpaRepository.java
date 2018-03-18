@@ -8,9 +8,9 @@ import java.util.List;
 
 @Repository
 public interface DoctorJpaRepository extends CrudRepository<Doctor, Long> {
-//    List<Doctor> findAll();
 
-//    List<Doctor> findBySpecializationId(final long specialisationId);
     List<Doctor> findBySpecializationId(long specializationId);
+
+
 
 }

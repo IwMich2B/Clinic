@@ -9,8 +9,6 @@ public interface IDoctorRepository {
 
     List<Doctor> findAll();
 
-    List<Doctor> findDoctorsBySpecialization(final long specialisationId);
-
-    List<Doctor> findBySpecializationId();
+    List<Doctor> findBySpecializationId(final long specialisationId);
 
 }
