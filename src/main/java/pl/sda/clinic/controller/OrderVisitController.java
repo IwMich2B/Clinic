@@ -102,7 +102,7 @@ public class OrderVisitController {
         final String visitData = (String) session.getAttribute("visitData");
         final Doctor doctor = (Doctor) session.getAttribute("doctor");
         final long patientId = (long) session.getAttribute("patientId");
-        final Patient patient = patientJpaRepository.findPatientById(patientId);
+        final Patient patient = patientJpaRepository.findById(patientId);
 
         List<Visit> visits = visitJpaRepository.findByDoctor_Id(doctor.getId());
 
