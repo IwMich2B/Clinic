@@ -7,13 +7,13 @@ public class VisitDto {
     private String specializacja;
     private String name;
     private String lastname;
-    private Date dateTime;
+    private String dateTime;
     private String hoursVisit;
 
     public VisitDto() {
     }
 
-    public VisitDto(int id, String specializacja, String name, String lastname, Date dateTime, String hoursVisit) {
+    public VisitDto(int id, String specializacja, String name, String lastname, String dateTime, String hoursVisit) {
         this.id = id;
         this.specializacja = specializacja;
         this.name = name;
@@ -54,11 +54,11 @@ public class VisitDto {
         this.lastname = lastname;
     }
 
-    public Date getDateTime() {
+    public String getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(Date dateTime) {
+    public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
     }
 

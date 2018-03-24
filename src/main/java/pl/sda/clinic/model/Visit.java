@@ -19,14 +19,14 @@ public class Visit {
     @JoinColumn(name = "id_patient")
     private Patient patient;
     @Column(name = "visit_date")
-    private Date dateTime;
+    private String dateTime;
     @Column(name = "hours_visit")
     private String hoursVisit;
 
     public Visit() {
     }
 
-    public Visit(long id, Doctor doctor, Patient patient, Date dateTime, String hoursVisit) {
+    public Visit(long id, Doctor doctor, Patient patient, String dateTime, String hoursVisit) {
         this.id = id;
         this.doctor = doctor;
         this.patient = patient;
@@ -58,11 +58,11 @@ public class Visit {
         this.patient = patient;
     }
 
-    public Date getDateTime() {
+    public String getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(Date dateTime) {
+    public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
     }
 
