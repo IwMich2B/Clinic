@@ -73,7 +73,7 @@ public class RegisterPatientController {
         }
 
         if (isValid)
-            return "redirect:/register?message=register_success_" + patient.getLogin();//TODO GDZIE MA WYLĄDOWAĆ?
+            return "redirect:/login?message=register_success_" + patient.getLogin();
         else
             return "register_patient";
     }

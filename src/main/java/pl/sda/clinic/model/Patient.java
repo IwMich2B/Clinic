@@ -11,10 +11,6 @@ import javax.validation.constraints.Size;
 @Table(name = "patients")
 public class Patient {
 
-    /*@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;*/
-
     @Id
     @SequenceGenerator(name="patients_seqc",
             sequenceName="patients_seqc",
@@ -34,8 +30,7 @@ public class Patient {
     private String lastName;
 
     @NotNull
-    @Size(min = 6, max = 18)
-    //@Pattern //TODO
+    @Size(min = 3, max = 18)
     private String login;
 
     @NotNull
@@ -51,7 +46,6 @@ public class Patient {
     private String email;
 
     @Size(max = 10)
-    //@Pattern //TODO
     private String phone;
 
     @NotNull

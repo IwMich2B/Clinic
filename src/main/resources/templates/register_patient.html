@@ -7,18 +7,7 @@
           href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css"/>-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 </head>
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">Menu</a>
-        </div>
-        <ul class="nav navbar-nav">
-            <li><a href="/menu">Strona główna</a></li>
-            <li><a href="/login">Zaloguj</a></li>
-            <li class="active"><a href=" ">Zarejestruj</a></li>
-        </ul>
-    </div>
-</nav>
+
 <style>
 
     header {
@@ -35,22 +24,25 @@
         color: dimgrey;
     }
 
-    /*form-control*/
-    .form-rebel {
-        border-color: violet;
+    .ramka {
+        border: 1px solid lightgrey;
+        padding: 2px;
+        font-size: 1.2em;
+        mso-ansi-font-weight: bold;
     }
 
     .controller-error {
-        color: fuchsia
+        color: red;
     }
 
 </style>
 <body>
 
-<!-- <header class="container"> --><!-- do  lewej, to samo z div zamiast header -->
-<header style="text-align:center;"><!-- wyśrodkowane, to samo z div zamiast header -->
+<th:block id="header" th:include="_menus :: title-menu" />
+
+<header class="text-center">
     <h1>Zarejestruj się w przychodni</h1>
-    <p class="sub-header">Aby założyć konto, wypełnij poniższy formularz.</p>
+    <p class="sub-header ">Aby założyć konto, wypełnij poniższy formularz.</p>
     <br/>
 </header>
 
@@ -58,82 +50,108 @@
     <form method="post" action="/register" th:action="@{/register}" th:object="${patient}">
         <fieldset>
             <legend>Dane dostępowe konta</legend>
+
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Wybierz nazwę użytkownika (login)</label>
+
+                <label for="inp_login" class="col-sm-2 col-form-label">Wybierz nazwę użytkownika (login) &ast;</label>
+
                 <div class="col-sm-10">
-                    <input class="form-rebel" type="text" th:field="*{login}" placeholder="Login"
-                           size="22" required="required" autofocus="autofocus"
-                           pattern="[a-z]{1}[a-z0-9-._]{5,}" maxlength="18"
-                           title="Niepoprawny format loginu"/>
-                    <span>&nbsp;&ast;</span>
-                    <small class="form-text text-muted"><br/>Login powinien rozpoczynać się od litery,
-                        zawierać od 6 do 18 znaków, w tym tylko małe litery i cyfry oraz znaki: &ldquor;-&rdquo; &ldquo;.&rdquo;
-                        &ldquo;_&rdquo;
-                    </small>
-                    <p class="controller-error" if="${#fields.hasErrors('login')}"
-                       th:errors="*{login}">Loginn error</p>
+
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <div class="input-group">
+                                <input id="inp_login" class="form-control" type="text" th:field="*{login}"
+                                       placeholder="Login"
+                                       required="required" autofocus="autofocus"
+                                       pattern="[A-Za-z]{1}[A-Za-z0-9-._]{2,}" maxlength="18"
+                                       title="Niepoprawny format loginu"/>
+                                <span class="input-group-text controller-error" th:if="${#fields.hasErrors('login')}"
+                                      th:errors="*{login}"><br/>Login error</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row text-muted" style="font-size:small">
+                        Login powinien rozpoczynać się od litery, zawierać od 3 do 18 znaków, w tym tylko litery alfabetu
+                        łacińskiego, cyfry oraz znaki: <span class="ramka">&nbsp;-&nbsp;</span>&nbsp;<span
+                            class="ramka">&nbsp;.&nbsp;</span>&nbsp;<span class="ramka">&nbsp;_&nbsp;</span>
+                    </div>
+
                 </div>
             </div>
+
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Ustaw hasło</label>
+
+                <label class="col-sm-2 col-form-label">Ustaw hasło &ast;</label>
+
                 <div class="col-sm-10">
-                    <input class="form-rebel" type="password" th:field="*{password}" placeholder="Hasło"
-                           size="40" required="required" autocomplete="off"
-                           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" maxlength="128"
-                           title="Niepoprawny format hasła"/>
-                    <span>&nbsp;&ast;</span>
-                    <small class="form-text text-muted"><br/>Hasło powinno zawierać od 8 do 100
-                        znaków, w tym przynajmniej jedną wielką literę, jedną małę literę i jedną cyfrę.
-                    </small>
-                    <mark>KOPIUJ-WKLEJ V1dloJy1LAa999Ns</mark>
-                    <p class="controller-error" if="${#fields.hasErrors('password')}"
-                       th:errors="*{password}">Password error</p>
+
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <div class="input-group">
+                                <input class="form-control" type="password" th:field="*{password}" placeholder="Hasło"
+                                       size="40" required="required" autocomplete="off"
+                                       pattern="(?=.*\d)(?=.*[a-zà-ž])(?=.*[A-ZÀ-Ž]).{8,}" maxlength="100"
+                                       title="Niepoprawny format hasła"/>
+                                <span class="input-group-text controller-error" th:if="${#fields.hasErrors('password')}"
+                                      th:errors="*{password}">Password error</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row text-muted" style="font-size:small">Hasło powinno zawierać od 8 do 100 znaków,
+                        w tym przynajmniej jedną wielką literę, jedną małą literę i jedną cyfrę.
+                        <mark> KOPIUJ-WKLEJ V1dloJy1LAa999Ns</mark>
+                    </div>
+
+
                 </div>
             </div>
+
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Powtórz hasło</label>
+                <label class="col-sm-2 col-form-label">Powtórz hasło &ast;</label>
                 <div class="col-sm-10">
-                    <input class="form-rebel" type="password" th:field="*{retypedPassword}" placeholder="Powtórz hasło"
-                           size="40" required="required" autocomplete="off"
-                           minlength="8" maxlength="100"/>
-                    <span>&nbsp;&ast;</span>
-                    <p class="controller-error" if="${#fields.hasErrors('retypedPassword')}"
-                       th:errors="*{retypedPassword}">RetypedPassword error.</p>
+                    <div class="input-group">
+                        <input class="form-control" type="password" th:field="*{retypedPassword}"
+                               placeholder="Powtórz hasło"
+                               size="40" required="required" autocomplete="off"
+                               minlength="8" maxlength="100"/>
+                        <p class="controller-error" th:if="${#fields.hasErrors('retypedPassword')}"
+                           th:errors="*{retypedPassword}">RetypedPassword error.</p>
+                    </div>
                 </div>
             </div>
         </fieldset>
+        <br/>
         <fieldset>
             <legend>Twoje dane osobowe</legend>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Imię</label>
+                <label class="col-sm-2 col-form-label">Imię &ast;</label>
                 <div class="col-sm-10">
-                    <input class="form-rebel" type="text" th:field="*{firstName}" placeholder="Imię"
+                    <input class="form-control" type="text" th:field="*{firstName}" placeholder="Imię"
                            size="52" required="required"
-                           pattern="[A-Za-z]{2}.*" maxlength="50"/>
-                    <span>&nbsp;&ast;</span>
-                    <p class="controller-error" if="${#fields.hasErrors('firstName')}"
+                           pattern="^[A-zÀ-ž]([A-zÀ-ž\s])*[A-zÀ-ž]$" maxlength="50"/>
+                    <p class="controller-error" th:if="${#fields.hasErrors('firstName')}"
                        th:errors="*{firstName}">FirstName error.</p>
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Nazwisko</label>
+                <label class="col-sm-2 col-form-label">Nazwisko &ast;</label>
                 <div class="col-sm-10">
-                    <input class="form-rebel" type="text" th:field="*{lastName}" placeholder="Nazwisko"
+                    <input class="form-control" type="text" th:field="*{lastName}" placeholder="Nazwisko"
                            size="52" required="required"
-                           pattern="[A-Za-z]{2}.*" maxlength="50"/>
-                    <span>&nbsp;&ast;</span>
-                    <p class="controller-error" if="${#fields.hasErrors('lastName')}"
+                           pattern="^[A-zÀ-ž]([A-zÀ-ž\s\-])*[A-zÀ-ž]$"  maxlength="50"/>
+                    <p class="controller-error" th:if="${#fields.hasErrors('lastName')}"
                        th:errors="*{lastName}">LastName error.</p>
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">PESEL</label>
+                <label class="col-sm-2 col-form-label">PESEL &ast;</label>
                 <div class="col-sm-10">
-                    <input class="form-rebel" type="text" th:field="*{pesel}" placeholder="PESEL"
+                    <input class="form-control" type="text" th:field="*{pesel}" placeholder="PESEL"
                            size="11" required="required" inputmode="numeric"
-                           pattern="[0-9]{11}" minlength="11" maxlength="11"/>
-                    <span>&nbsp;&ast;</span>
-                    <p class="controller-error" if="${#fields.hasErrors('pesel')}"
+                           pattern="\d{11}" maxlength="11"/>
+                    <p class="controller-error" th:if="${#fields.hasErrors('pesel')}"
                        th:errors="*{pesel}">Pesel error.</p>
                 </div>
             </div>
@@ -144,22 +162,21 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Adres e-mailowy</label>
                 <div class="col-sm-10">
-                    <input class="form-rebel" type="email" th:field="*{email}" placeholder="me@example.org"
+                    <input class="form-control" type="email" th:field="*{email}" placeholder="me@example.org"
                            size="40"
                            maxlength="100"/>
-                    <p class="controller-error" if="${#fields.hasErrors('email')}"
+                    <p class="controller-error" th:if="${#fields.hasErrors('email')}"
                        th:errors="*{email}">Email error.</p>
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Numer telefonu
-                    <mark>html5 type (tel)</mark>
-                </label>
+                <label class="col-sm-2 col-form-label">Numer telefonu</label>
                 <div class="col-sm-10">
-                    <input class="form-rebel" type="tel" th:field="*{phone}" placeholder=""
+                    <input class="form-control" type="tel" th:field="*{phone}" placeholder="(77)123456"
                            size="12"
-                           maxlength="10"/>
-                    <p class="controller-error" if="${#fields.hasErrors('phone')}"
+                           pattern="[\d-()].{3,}" maxlength="10"/>
+                    <mark>baza danych dopuszcza max 10 znaków</mark>
+                    <p class="controller-error" th:if="${#fields.hasErrors('phone')}"
                        th:errors="*{phone}">Phone error.</p>
                 </div>
             </div>
@@ -170,22 +187,23 @@
             <div class="form-group">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" required="required"/>
-                    <label class="form-check-label">Akceptuję <a href="./regulamin">Regulamin przychodni</a>.&nbsp;&ast;</label>
+                    <label class="form-check-label">Akceptuję <a href="./regulamin">Regulamin przychodni</a>.
+                        &ast;</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" required="required"/>
-                    <label class="form-check-label">Akceptuję <a href="./zasady">Ogólne zasady
-                        korzystania z konta</a>.&nbsp;&ast;</label>
+                    <label class="form-check-label">Akceptuję <a href="./zasady">Ogólne zasady korzystania z konta</a>.
+                        &ast;</label>
                 </div>
             </div>
         </fieldset>
         <br/>
         <p>&ast;&nbsp;pola wymagane</p>
         <br/>
-        <span class="submit">
+        <p class="submit">
             <button type="submit" class="btn btn-primary">Zarejestruj</button>
             &nbsp;<button class="btn btn-secondary" onClick="window.location='/menu'">Anuluj (wróć do menu)</button>
-        </span>
+        </p>
     </form>
     <br/>
 </div>

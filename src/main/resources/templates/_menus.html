@@ -1,0 +1,27 @@
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="title-menu">
+    <nav class="navbar navbar-default" >
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Menu</a>
+            </div>
+
+            <ul th:if="${(session.patientId != null) or (session.patientLogin != null)}" class="nav navbar-nav">
+                <li th:class="${#httpServletRequest.requestURI == '/menu'} ? active"><a href="/menu">Strona główna</a></li>
+                <li th:class="${#httpServletRequest.requestURI == '/specialization'} ? active"><a href="/specialization">Umawianie wizyty</a></li>
+                <li th:class="${#httpServletRequest.requestURI == '/lista'} ? active"><a href="/lista">Moje wizyty</a></li>
+                <li th:class="${#httpServletRequest.requestURI == '/wyloguj'} ? active"><a href="/wyloguj">Wyloguj</a></li>
+                <li th:class="${#httpServletRequest.requestURI == '/register'} ? active"><a href="/register">Zarejestruj inną osobę</a></li>
+            </ul>
+
+            <ul th:if="${(session.patientId == null) and (session.patientLogin == null)}" class="nav navbar-nav">
+                <li th:class="${#httpServletRequest.requestURI == '/menu'} ? active"><a href="/menu">Strona główna</a></li>
+                <li th:class="${#httpServletRequest.requestURI == '/login'} ? active"><a href="/login">Zaloguj</a></li>
+                <li th:class="${#httpServletRequest.requestURI == '/register'} ? active"><a href="/register">Zarejestruj</a></li>
+            </ul>
+
+        </div>
+    </nav>
+</th:block>
+</html>

@@ -20,10 +20,16 @@ public class PatientRepository implements IPatientRepository {
         return patientJpaRepository.existsByLogin(login);
     }*/
 
+
+      /* @Override
+    public Boolean existsByLoginIgnoreCase(String login) {
+        return patientJpaRepository.existsByLoginIgnoreCase(login);
+    }*/
+
     @Override
     public Patient createPatient(Patient patient) throws PatientAlreadyExistsException {
 
-        if (patientJpaRepository.existsByLogin(patient.getLogin())) {
+        if (patientJpaRepository.existsByLoginIgnoreCase(patient.getLogin())) {
             throw new PatientAlreadyExistsException(patient.getLogin());
         } else
             return patientJpaRepository.save(patient);
@@ -33,7 +39,7 @@ public class PatientRepository implements IPatientRepository {
     @Override
     public Patient findPatientById(Long id) throws PatientNotFoundException {
 
-        Patient patient = patientJpaRepository.findPatientById(id);
+        Patient patient = patientJpaRepository.findById(id);
 
         if (patient == null)
             throw new PatientNotFoundException(id);
@@ -53,15 +59,24 @@ public class PatientRepository implements IPatientRepository {
     }
 
     @Override
-    public Patient findPatientByLoginAndPassword(String login, String password) {
-        return patientJpaRepository.findPatientByLoginAndPassword(login, password);
+    public Patient findPatientByLoginIgnoreCase(String login) throws PatientNotFoundException {
+        Patient patient = patientJpaRepository.findByLoginIgnoreCase(login);
+        if (patient == null)
+            throw new PatientNotFoundException(login);
+        else
+            return patient;
     }
 
     @Override
-    public Patient updatePatient(Patient patient) throws PatientNotFoundException {
-        //TODO?
-        return patientJpaRepository.save(patient);
+    public Patient findPatientByLoginAndPassword(String login, String password) {
+        return patientJpaRepository.findByLoginAndPassword(login, password);
     }
+
+   /* @Override
+    public Patient updatePatient(Patient patient) throws PatientNotFoundException {
+        //TODO?    //uwaga na zmianę loginu
+        return patientJpaRepository.save(patient);
+    }*/
 
     @Override
     @Transactional
