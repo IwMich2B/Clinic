@@ -2,13 +2,16 @@ package pl.sda.clinic.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
 
 @Entity
 @Table(name = "visits")
 public class Visit {
     @Id
-    @Column
+    @SequenceGenerator(name = "visits_sql",
+            sequenceName = "visits_sql",
+            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator = "visits_sql")
     private long id;
     @NotNull
     @OneToOne
@@ -26,13 +29,19 @@ public class Visit {
     public Visit() {
     }
 
-    public Visit(long id, Doctor doctor, Patient patient, String dateTime, String hoursVisit) {
-        this.id = id;
+    public Visit(Doctor doctor, Patient patient, String dateTime, String hoursVisit) {
         this.doctor = doctor;
         this.patient = patient;
         this.dateTime = dateTime;
         this.hoursVisit = hoursVisit;
     }
+//    public Visit(long id, Doctor doctor, Patient patient, String dateTime, String hoursVisit) {
+//        this.id = id;
+//        this.doctor = doctor;
+//        this.patient = patient;
+//        this.dateTime = dateTime;
+//        this.hoursVisit = hoursVisit;
+//    }
 
     public long getId() {
         return id;

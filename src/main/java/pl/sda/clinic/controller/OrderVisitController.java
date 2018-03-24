@@ -1,23 +1,27 @@
 package pl.sda.clinic.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import pl.sda.clinic.dto.LoginForm;
 import pl.sda.clinic.dto.SpecializationForm;
-import pl.sda.clinic.model.Patient;
-import pl.sda.clinic.model.Specialization;
+import pl.sda.clinic.model.*;
 import pl.sda.clinic.repository.doctors.DoctorJpaRepository;
-import pl.sda.clinic.model.Doctor;
+import pl.sda.clinic.repository.hour.HourRepository;
+import pl.sda.clinic.repository.patients.PatientJpaRepository;
 import pl.sda.clinic.repository.specialization.SpecializationRepository;
+import pl.sda.clinic.repository.visits.VisitJpaRepository;
+import pl.sda.clinic.repository.visits.VisitRepository;
 import pl.sda.clinic.services.DoctorService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -32,49 +36,91 @@ public class OrderVisitController {
     @Autowired
     DoctorService doctorService;
 
+    @Autowired
+    VisitRepository visitRepository;
+
+    @Autowired
+    PatientJpaRepository patientJpaRepository;
+
+    @Autowired
+    HourRepository hourRepository;
+
+    @Autowired
+    VisitJpaRepository visitJpaRepository;
 
     @RequestMapping(path = "/specialization", method = RequestMethod.GET)
-public ModelAndView specialization() {
-    final ModelAndView modelAndView = new ModelAndView("specialization");
-
-    modelAndView.addObject("specialization", specializationRepository.findAll());
-    return modelAndView;
-}
-    @RequestMapping(path = "/specialization", method = RequestMethod.POST)
-    public String specializationForm(
-            @ModelAttribute(value = "specialization") SpecializationForm specialization,
-            HttpServletRequest request) {
-        List<Doctor> doctorList = doctorService.doctorsBySpecialization(specialization);
+    public ModelAndView specialization(HttpServletRequest request) {
+        final ModelAndView modelAndView = new ModelAndView("specialization");
+        modelAndView.addObject("specialization", specializationRepository.findAll());
         HttpSession session = request.getSession();
+        return modelAndView;
+    }
+
+    @RequestMapping(path = "/specialization", method = RequestMethod.POST)
+    public String specializationForm(@ModelAttribute(value = "specialization") SpecializationForm specialization, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+
         session.setAttribute("specialization", specialization.getSpecialization().getId());
         return "redirect:./doctor";
     }
 
-
     @RequestMapping(path = "/doctor", method = RequestMethod.GET)
-    public ModelAndView doctor(@ModelAttribute(value="specialization") SpecializationForm specialization, HttpServletRequest request) {
+    public ModelAndView doctor(@ModelAttribute(value = "specialization") SpecializationForm specialization, HttpServletRequest request) {
         final ModelAndView modelAndView = new ModelAndView("doctor");
 
         long specializationId = (long) request.getSession().getAttribute("specialization");
         modelAndView.addObject("doctor", doctorJpaRepository.findBySpecializationId(specializationId));
-                //doctorService.doctorsBySpecialization(specialization));
-
         return modelAndView;
     }
-//    @RequestMapping(path = "/order", method = RequestMethod.GET)
-//    public ModelAndView menu() {
-//        final ModelAndView modelAndView = new ModelAndView("order_visit");
-//
-//        modelAndView.addObject("specialization", specializationRepository.findAll());
-//
 
-        //run to load all doctors
-//        final List<Doctor> doctors = doctorJpaRepository.findAll();
-//        modelAndView.addObject("doctor", doctors);
+    @RequestMapping(path = "/doctor", method = RequestMethod.POST)
+    public String redirectToVisitSummary(@ModelAttribute(value = "doctor") Doctor doctor,
+                                         @ModelAttribute(value = "data") String data,
+                                         @ModelAttribute(value = "hours") String hours,
+                                         HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.setAttribute("doctorId", doctor.getId());
+        session.setAttribute("visitData", data);
+        session.setAttribute("doctor", doctor);
+        session.setAttribute("hours",hours);
+        return "redirect:./hour";
+    }
 
-//        //run to load doctors by specialization
-//        final List<Doctor> doctorsBySpec = doctorJpaRepository.findBySpecializationId(1);
-//        modelAndView.addObject("doctor", doctorsBySpec);
-//        return modelAndView;
-//    }
+    @RequestMapping(path = "/hour", method = RequestMethod.GET)
+    public ModelAndView getHourView(@ModelAttribute(value = "doctor") Doctor doctor, HttpServletRequest request) {
+        long doctorId = (long) request.getSession().getAttribute("doctorId");
+        final ModelAndView modelAndView = new ModelAndView("hour");
+        modelAndView.addObject("hours", hourRepository.getHoursByDoctor(doctorId));
+//        modelAndView.addObject("hours",
+//                visitRepository.findVisitsByDoctorIdAndData(doctorId, (String) request.getSession().getAttribute("visitData")));
+        return modelAndView;
+    }
+
+    @RequestMapping(path = "/hour", method = RequestMethod.POST)
+    public String redirectToVisitSummary(@ModelAttribute(value = "hour") HarmonogramItem harmonogramItem, HttpServletRequest request) {
+        final HttpSession session = request.getSession();
+        final String visitData = (String) session.getAttribute("visitData");
+        final Doctor doctor = (Doctor) session.getAttribute("doctor");
+        final long patientId = (long) session.getAttribute("patientId");
+        final Patient patient = patientJpaRepository.findPatientById(patientId);
+
+        List<Visit> visits = visitJpaRepository.findByDoctor_Id(doctor.getId());
+
+        // new Visit(doctorId, patirntId, visitData, hour);
+        final Visit visit = new Visit(doctor, patient, visitData, harmonogramItem.getHour());
+        visitJpaRepository.save(visit);
+        long visitId = visit.getId();
+        return "redirect:./summary_visit";
+    }
+
+
+    @RequestMapping(path = "/summary_visit", method = RequestMethod.GET)
+    public ModelAndView summary_visit(HttpServletRequest request, Visit visita) {
+        final ModelAndView modelAndView = new ModelAndView("summary_visit");
+        final Visit visit = visitJpaRepository.findOne(visita.getId());
+//        modelAndView.addObject("summary_visit", hourJpaRepository.findById(hourId));
+        return modelAndView;
+    }
+
+
 }
