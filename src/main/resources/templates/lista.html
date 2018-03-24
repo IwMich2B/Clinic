@@ -24,7 +24,7 @@
         </ul>
     </div>
 </nav>
-
+<h5 class="text-right">Jesteś zalogowany jako:  <span th:text="${session.patientLogin}"></span></h5>
 <h1 class="text-center">Lista Umówionych Wizyt</h1>
 
 <form method="post" action="/lista" th:action="@{/lista}" th:object="${visit}">
