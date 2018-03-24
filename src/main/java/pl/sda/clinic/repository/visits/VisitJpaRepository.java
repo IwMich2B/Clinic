@@ -10,5 +10,5 @@ import java.util.List;
 public interface VisitJpaRepository extends CrudRepository<Visit,Long> {
     List<Visit> findByPatient_Id (Long id);
 
-
+    List<Visit> findByDoctor_Id(Long id);
 }

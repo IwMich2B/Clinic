@@ -22,6 +22,11 @@ public class VisitsController {
     VisitRepository visitRepository;
     @Autowired
     SpecializationRepository specializationRepository;
+
+
+
+
+
     @RequestMapping(path = "/lista", method = RequestMethod.GET)
     public String visits(HttpServletRequest httpServletRequest, Model model) {
         List<Visit> visits = visitRepository.findByPatient_Id((Long)(httpServletRequest.getSession().getAttribute("patientId")));
@@ -29,7 +34,7 @@ public class VisitsController {
         List<VisitDto> visitDtoList = new ArrayList<>();
         for (Visit visit:visits) {
             VisitDto visitDto = new VisitDto();
-            visitDto.setId((int)visit.getId());
+            visitDto.setId(visit.getId());
 
 
             Long ids = visit.getDoctor().getSpecializationId();
@@ -46,6 +51,8 @@ public class VisitsController {
         model.addAttribute("visits",visitDtoList);
         return "lista";
     }
+
+
 
 
 
