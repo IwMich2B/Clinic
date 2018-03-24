@@ -11,4 +11,5 @@ public interface IDoctorRepository {
 
     List<Doctor> findBySpecializationId(final long specialisationId);
 
+
 }

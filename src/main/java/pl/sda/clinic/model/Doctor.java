@@ -24,15 +24,23 @@ public class Doctor {
     @Column(name = "specialization_id")
     private long specializationId;
 
+//    @Column(name = "harmonogram")
+//    private Harmonogram harmonogram;
+
     public Doctor() {
     }
 
-    public Doctor(long id, String name, String lastName, long specializationId) {
-        this.id = id;
+    public Doctor(String name, String lastName, long specializationId) {
         this.name = name;
         this.lastName = lastName;
         this.specializationId = specializationId;
     }
+//    public Doctor(long id, String name, String lastName, long specializationId) {
+//        this.id = id;
+//        this.name = name;
+//        this.lastName = lastName;
+//        this.specializationId = specializationId;
+//    }
 
     public void setName(String name) {
         this.name = name;
@@ -66,9 +74,13 @@ public class Doctor {
         return name;
     }
 
-
-
-
+//    public Harmonogram getHarmonogram() {
+//        return harmonogram;
+//    }
+//
+//    public void setHarmonogram(Harmonogram harmonogram) {
+//        this.harmonogram = harmonogram;
+//    }
 
     public long getSpecializationId() {
         return specializationId;
@@ -79,7 +91,9 @@ public class Doctor {
         return "Doctor{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", specializationId=" + specializationId +
+//                ", harmonogram=" + harmonogram +
                 '}';
     }
 }

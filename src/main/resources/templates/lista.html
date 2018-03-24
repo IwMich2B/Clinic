@@ -17,9 +17,8 @@
             <li><a href="/menu">Strona główna</a></li>
             <li><a href="/login?logout">Wyloguj</a></li>
             <li><a href="/order">Umów wizytę </a></li>
-            <li ><a href="/odwolaj">Odwołaj wizytę </a></li>
+            <li><a href="/odwolaj">Odwołaj wizytę </a></li>
             <li class="active"><a href="/lista">Sprawdź wizyty </a></li>
-
 
 
         </ul>
@@ -27,8 +26,11 @@
 </nav>
 
 <h1 class="text-center">Lista Umówionych Wizyt</h1>
+
+<form method="post" action="/lista" th:action="@{/lista}" th:object="${visit}">
+
 <div class="container">
-    <table class="table table-bordered table-responsive-md" >
+    <table class="table table-bordered table-responsive-md">
 
 
         <thead>
@@ -37,37 +39,24 @@
 
 
             <td>Specjalizacja</td>
-            <td>Imie</td>
-            <td>Nazwisko</td>
+            <td>Lekarz</td>
             <td>Dzień</td>
             <td>Godzina</td>
-            <td> link </td>
 
 
         </tr>
 
         </thead>
         <tbody>
-        <!--<tr>-->
-
-            <!--<th scope="row" class="pr-md-3 pr-5">-->
-                <!--<input type="checkbox" class="filled-in" id ="checkbox"/>-->
-                <!--<label for="checkbox" class="label-tabel"></label>-->
-            <!--</th>-->
-            <!---->
-        <!--</tr>-->
 
         <tr th:each="visit : ${visits}">
             <td th:text="${visit.specializacja}"></td>
-            <td th:text="${visit.name}"></td>
-            <td th:text="${visit.lastname}"></td>
+            <td th:text="${visit.name+' ' +visit.lastname}"></td>
             <td th:text="${visit.dateTime}"></td>
             <td th:text="${visit.hoursVisit}"></td>
             <td th:text="${visit.id}"></td>
 
-
         </tr>
-
         </tbody>
     </table>
     <button type="button" class="btn btn-info" value="">Anuluj</button>
@@ -75,5 +64,6 @@
 <script type="text/javascript"
         src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 
+</form>
 </body>
 </html>

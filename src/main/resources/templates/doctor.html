@@ -31,28 +31,24 @@
 
             <label><i class="glyphicon glyphicon-user"></i> Lekarz</label>
 
-            <select class="form-control" id="doctorList" name="doctorList">
+            <select class="form-control" id="doctorList" name="doctor">
                 <option th:each="dr : ${doctor}"
                         th:value="${dr.id}"
                         th:text="${dr.name+' ' + dr.lastName}">
                 </option>
             </select>
         </div>
-            <p></p>
+        <p></p>
 
         <h3 class="text-center">Wybierz datę </h3>
 
         <div>
-
-
             <div style="display: inline-block">
                 <label for="data"><i class='glyphicon glyphicon-calendar'></i> Data</label>
-                <input type="date" class="form-control" id="data"> </input>
+                <input type="date" class="form-control" id="data" name="data"> </input>
             </div>
-
-
             <p></p>
-    </div>
+        </div>
 
         <p>
             <input class="btn btn-primary" type="submit" value="Wstecz"/>
