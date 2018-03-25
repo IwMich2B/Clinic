@@ -15,8 +15,8 @@
                     <li th:class="${#vars.adresik == '/lista'} ? active"><a href="/lista"><span class="glyphicon glyphicon-calendar"></span>&nbsp;Moje wizyty</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="text"><span class="glyphicon glyphicon-user"></span>&nbsp;<span th:utext="'Zalogowany jako: ' + ${session.patientLogin}"></span></li>
-                    <li th:class="${#vars.adresik == '/login?logout'} ? active"><a href="/login?logout">Wyloguj</a></li>
+                    <li><span class="glyphicon glyphicon-user"></span>&nbsp;<span th:utext="'Zalogowany jako: ' + ${session.patientLogin}"></span></li>
+                    <li><a href="/login?logout">Wyloguj</a></li>
                 </ul>
 
             </div>
