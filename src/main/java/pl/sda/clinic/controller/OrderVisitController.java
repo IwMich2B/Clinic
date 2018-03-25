@@ -54,6 +54,8 @@ public class OrderVisitController {
         final ModelAndView modelAndView = new ModelAndView("specialization");
         modelAndView.addObject("specialization", specializationRepository.findAll());
         HttpSession session = request.getSession();
+        session.removeAttribute("specializationName");
+        session.removeAttribute("specialization");
         return modelAndView;
     }
 
@@ -70,6 +72,11 @@ public class OrderVisitController {
     public ModelAndView doctor(@ModelAttribute(value = "specialization") SpecializationForm specialization, HttpServletRequest request, Patient patient) {
         final ModelAndView modelAndView = new ModelAndView("doctor");
 
+        HttpSession session = request.getSession();
+        session.removeAttribute("doctorId");
+        session.removeAttribute("visitData");
+        session.removeAttribute("doctor");
+
         long specializationId = (long) request.getSession().getAttribute("specialization");
         modelAndView.addObject("doctor", doctorJpaRepository.findBySpecializationId(specializationId));
         return modelAndView;
@@ -78,13 +85,11 @@ public class OrderVisitController {
     @RequestMapping(path = "/doctor", method = RequestMethod.POST)
     public String redirectToVisitSummary(@ModelAttribute(value = "doctor") Doctor doctor,
                                          @ModelAttribute(value = "data") String data,
-                                         @ModelAttribute(value = "hours") String hours,
                                          HttpServletRequest request) {
         HttpSession session = request.getSession();
         session.setAttribute("doctorId", doctor.getId());
         session.setAttribute("visitData", data);
         session.setAttribute("doctor", doctor);
-        session.setAttribute("hours",hours);
         return "redirect:./hour";
     }
 
@@ -105,6 +110,7 @@ public class OrderVisitController {
     @RequestMapping(path = "/hour", method = RequestMethod.POST)
     public String redirectToVisitSummary(@ModelAttribute(value = "hour") HarmonogramItem harmonogramItem, HttpServletRequest request) {
         final HttpSession session = request.getSession();
+        session.setAttribute("hour", harmonogramItem.getHour());
         final String visitData = (String) session.getAttribute("visitData");
         final Doctor doctor = (Doctor) session.getAttribute("doctor");
         final long patientId = (long) session.getAttribute("patientId");
@@ -135,7 +141,7 @@ public class OrderVisitController {
         session.getAttribute("specializationName");
         session.getAttribute("visitData");
         session.getAttribute("doctor");
-        session.getAttribute("hours");
+        session.getAttribute("hour");
         //final VisitDto visit = visitJpaRepository.findOne(visit.getId());
 //        modelAndView.addObject("summary_visit", hourJpaRepository.findById(hourId));
         return modelAndView;

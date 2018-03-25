@@ -17,65 +17,46 @@
                 <li><a href="/menu">Strona główna</a></li>
                 <li><a href="/login?logout">Wyloguj</a></li>
                 <li><a href="/specialization">Umów wizytę </a></li>
-                <li class="active"><a href="/lista">Moje wizyty </a></li>
-
+                <li><a href="/lista">Moje wizyty </a></li>
+                <li class="active"><a href="/summary_visit">Wizyta </a></li>
             </ul>
         </div>
     </nav>
     <h5 class="text-right">Jesteś zalogowany jako:  <span th:text="${session.patientLogin}"></span></h5>
-    <h1 class="text-center">Umawianie wizyty </h1>
 
     <div class="alert alert-success">
         <center> Wizyta została umówiona!</center>
     </div>
     <!--<div class="alert alert-success"/> Wizyta została umówiona! </div>-->
 
-    <form method="post" action="/summary_visit" th:action="@{/summary_visit}" th:object="${visit}">
 
-        <div>
+    <div>
 
-            <div class="container">
-                <table class="table table-hover ">
-                    <thead>
+        <div class="container">
+            <table class="table table-hover ">
+                <thead>
 
-                    <tr>
-                        <th>Specjalizacja</th>
-                        <th>Lekarz</th>
-                        <th>Dzień</th>
-                        <th>Godzina</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th th:text="${session.specializationName}"></th>
-                        <th th:text="${session.doctor.getName()+' '+session.doctor.getLastName()}"></th>
-                        <th th:text="${session.visitData}"></th>
-                        <th th:text="${session.hours}"></th>
-                    </tr>
-                    </tbody>
+                <tr>
+                    <th>Specjalizacja</th>
+                    <th>Lekarz</th>
+                    <th>Dzień</th>
+                    <th>Godzina</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th th:text="${session.specializationName}"></th>
+                    <th th:text="${session.doctor.getName()+' '+session.doctor.getLastName()}"></th>
+                    <th th:text="${session.visitData}"></th>
+                    <th th:text="${session.hour}"></th>
+                </tr>
+                </tbody>
 
-                </table>
-
-            </div>
-
-
-
-            <!--<tr th:each="visit : ${visits}" th:name="visits">-->
-            <!--<td th:text="${visit.specializacja}"></td>-->
-            <!--<td th:text="${visit.doctor.name}"></td>-->
-            <!--<td th:text="${visit.lastname}"></td>-->
-            <!--<td th:text="${visit.dateTime}"></td>-->
-            <!--<td th:text="${visit.hoursVisit}"></td>-->
-            <!--<td th:text="${visit.id}"></td>-->
-
-
+            </table>
 
         </div>
-    </form>
-    <p>
-        <button class="btn btn-primary" onclick="window.location='/lista'">Lista wizyt</button>
 
-    </p>
+    </div>
 </body>
 </html>
 
