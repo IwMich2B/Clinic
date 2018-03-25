@@ -47,15 +47,10 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <!--<td>-->
-                            <!--<input type="text" th:field="*{specialization.sp.name}"/>-->
-                        <!--</td>-->
-                        <!--<td>-->
-                            <!--<input type="text" th:field="*{doctor.name + ' ' + doctor.lastName}"/>-->
-                        <!--</td>-->
-                        <!--<td>-->
-                            <!--<input type="text" th:field="*{data}"/>-->
-                        <!--</td>-->
+                        <th th:text="${session.specializationName}"></th>
+                        <th th:text="${session.doctor.getName()+' '+session.doctor.getLastName()}"></th>
+                        <th th:text="${session.visitData}"></th>
+                        <th th:text="${session.hours}"></th>
                     </tr>
                     </tbody>
 
