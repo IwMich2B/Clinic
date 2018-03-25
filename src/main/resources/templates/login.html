@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <title>Login</title>
@@ -7,18 +7,7 @@
           href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css"/>
 </head>
 <body>
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">Menu</a>
-        </div>
-        <ul class="nav navbar-nav">
-            <li><a href="/menu">Strona główna</a></li>
-            <li class="active"><a href=" ">Zaloguj</a></li>
-            <li><a href="/register">Zarejestruj</a></li>
-        </ul>
-    </div>
-</nav>
+<th:block th:id="header" th:include="_menus :: title-menu" />
 <h1 class="text-center">Zaloguj się</h1>
 <div class="container">
     <form method="post" th:action="@{/login}" th:object="${patient}">
