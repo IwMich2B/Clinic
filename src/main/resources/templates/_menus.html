@@ -1,27 +1,55 @@
 <html lang="pl" xmlns:th="http://www.thymeleaf.org">
 
-<th:block th:fragment="title-menu">
-    <nav class="navbar navbar-default" >
+<th:block th:fragment="title-menu" th:with="adresik=${#httpServletRequest.requestURI}">
+    <nav class="navbar navbar-default">
         <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Menu</a>
+
+            <div class="navbar-header"  style="background-color:#dbf0db">
+                <a class="navbar-brand" href="#">Health Clinic</a>
             </div>
 
-            <ul th:if="${(session.patientId != null) or (session.patientLogin != null)}" class="nav navbar-nav">
-                <li th:class="${#httpServletRequest.requestURI == '/menu'} ? active"><a href="/menu">Strona główna</a></li>
-                <li th:class="${#httpServletRequest.requestURI == '/specialization'} ? active"><a href="/specialization">Umawianie wizyty</a></li>
-                <li th:class="${#httpServletRequest.requestURI == '/lista'} ? active"><a href="/lista">Moje wizyty</a></li>
-                <li th:class="${#httpServletRequest.requestURI == '/wyloguj'} ? active"><a href="/wyloguj">Wyloguj</a></li>
-                <li th:class="${#httpServletRequest.requestURI == '/register'} ? active"><a href="/register">Zarejestruj inną osobę</a></li>
-            </ul>
+            <div th:if="${(session.patientId != null) and (session.patientLogin != null)}">
+                <ul class="nav navbar-nav">
+                    <li th:class="${adresik == '/menu'} ? active"><a href="/menu">Strona
+                        główna</a></li>
+                    <li th:class="${adresik == '/specialization'} ? active"><a
+                            href="/specialization">Umów wizytę</a></li>
+                    <li th:class="${adresik == '/lista'} ? active"><a href="/lista">
+                        <span class="glyphicon glyphicon-user"></span> Moje wizyty</a>
+                    </li>
+                    <li th:if="${adresik == '/summary_visit'}" class="active"><a href="/summary_visit">Wizyta</a></li>
 
-            <ul th:if="${(session.patientId == null) and (session.patientLogin == null)}" class="nav navbar-nav">
-                <li th:class="${#httpServletRequest.requestURI == '/menu'} ? active"><a href="/menu">Strona główna</a></li>
-                <li th:class="${#httpServletRequest.requestURI == '/login'} ? active"><a href="/login">Zaloguj</a></li>
-                <li th:class="${#httpServletRequest.requestURI == '/register'} ? active"><a href="/register">Zarejestruj</a></li>
-            </ul>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- <li th:class="${#httpServletRequest.requestURI == '/register'} ? active">
+                    <a href="/register">Zarejestruj inną osobę</a></li> -->
+                    <li class="text">Zalogowany jako: <span th:text="${session.patientLogin}"></span></li>
+                    <li th:class="${adresik == '/login?logout'} ? active"><a
+                            href="/login?logout">Wyloguj</a></li>
+
+                </ul>
+                <!-- <h5 class="text-right">Jesteś zalogowany jako: <span th:text="${session.patientLogin}"></span></h5> -->
+
+
+            </div>
+
+            <div th:if="${(session.patientId == null) or (session.patientLogin == null)}">
+                <ul class="nav navbar-nav">
+                    <li th:class="${adresik == '/menu'} ? active"><a href="/menu">Strona
+                        główna</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li th:class="${adresik == '/login'} ? active"><a href="/login">Zaloguj</a>
+                    </li>
+                    <li th:class="${adresik == '/register'} ? active"><a href="/register">Zarejestruj</a>
+                    </li>
+                </ul>
+
+            </div>
 
         </div>
     </nav>
+
 </th:block>
 </html>
