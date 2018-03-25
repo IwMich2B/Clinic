@@ -15,12 +15,12 @@
         </div>
         <ul class="nav navbar-nav">
             <li><a href="/menu">Strona główna</a></li>
-            <li><a href=" ">Moje wizyty</a></li>
-            <li><a href=" ">Wyloguj</a></li>
+            <li><a href="/lista">Moje wizyty</a></li>
+            <li><a href="/login?logout">Wyloguj</a></li>
         </ul>
     </div>
 </nav>
-
+<h5 class="text-right">Jesteś zalogowany jako:  <span th:text="${session.patientLogin}"></span></h5>
 <h1 class="text-center">Umawianie wizyty </h1>
 <h3 class="text-center">Wybierz specjalizację </h3>
 

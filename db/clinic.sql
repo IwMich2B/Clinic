@@ -48,3 +48,6 @@ ALTER TABLE doctors ADD specialization_id INT REFERENCES specjalizacja (id);
 ALTER TABLE patients ADD first_name VARCHAR(200),
   ADD last_name VARCHAR(200);
 
+set search_path = public;
+ALTER TABLE visits DROP COLUMN visit_date;
+ALTER TABLE visits ADD visit_date VARCHAR(12);

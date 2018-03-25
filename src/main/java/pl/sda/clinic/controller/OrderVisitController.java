@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import pl.sda.clinic.dto.SpecializationForm;
+import pl.sda.clinic.dto.VisitDto;
 import pl.sda.clinic.model.*;
 import pl.sda.clinic.repository.doctors.DoctorJpaRepository;
 import pl.sda.clinic.repository.hour.HourRepository;
@@ -59,13 +60,14 @@ public class OrderVisitController {
     @RequestMapping(path = "/specialization", method = RequestMethod.POST)
     public String specializationForm(@ModelAttribute(value = "specialization") SpecializationForm specialization, HttpServletRequest request) {
         HttpSession session = request.getSession();
+        session.setAttribute("specializationName",specialization.getSpecialization().getName());
 
         session.setAttribute("specialization", specialization.getSpecialization().getId());
         return "redirect:./doctor";
     }
 
     @RequestMapping(path = "/doctor", method = RequestMethod.GET)
-    public ModelAndView doctor(@ModelAttribute(value = "specialization") SpecializationForm specialization, HttpServletRequest request) {
+    public ModelAndView doctor(@ModelAttribute(value = "specialization") SpecializationForm specialization, HttpServletRequest request, Patient patient) {
         final ModelAndView modelAndView = new ModelAndView("doctor");
 
         long specializationId = (long) request.getSession().getAttribute("specialization");
@@ -118,13 +120,25 @@ public class OrderVisitController {
     }
 
 
+//    @RequestMapping(path = "/summary_visit", method = RequestMethod.GET)
+//    public ModelAndView summary_visit(HttpServletRequest request, Visit visita) {
+//        final ModelAndView modelAndView = new ModelAndView("summary_visit");
+//        final Visit visit = visitJpaRepository.findOne(visita.getId());
+////        modelAndView.addObject("summary_visit", hourJpaRepository.findById(hourId));
+//        return modelAndView;
+//    }
     @RequestMapping(path = "/summary_visit", method = RequestMethod.GET)
-    public ModelAndView summary_visit(HttpServletRequest request, Visit visita) {
+    public ModelAndView summary_visit(HttpServletRequest request) {
         final ModelAndView modelAndView = new ModelAndView("summary_visit");
-        final Visit visit = visitJpaRepository.findOne(visita.getId());
+        HttpSession session = request.getSession();
+        session.getAttribute("doctorId");
+        session.getAttribute("specializationName");
+        session.getAttribute("visitData");
+        session.getAttribute("doctor");
+        session.getAttribute("hours");
+        //final VisitDto visit = visitJpaRepository.findOne(visit.getId());
 //        modelAndView.addObject("summary_visit", hourJpaRepository.findById(hourId));
         return modelAndView;
     }
-
 
 }

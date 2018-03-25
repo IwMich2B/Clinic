@@ -15,21 +15,19 @@
         </div>
         <ul class="nav navbar-nav">
             <li><a href="/menu">Strona główna</a></li>
-            <li><a href=" ">Zaloguj</a></li>
-            <li class="active"><a href="/order">Umów wizytę</a></li>
-            <li><a href=" ">Odwołaj wizytę</a></li>
-            <li><a href=" ">Sprawdź wizyty</a></li>
+            <li><a href="/login?logout">Wyloguj</a></li>
+            <li class="active"><a href="/specialization">Umów wizytę</a></li>
+            <li><a href="/lista">Moje wizyty</a></li>
         </ul>
     </div>
 </nav>
+<h5 class="text-right">Jesteś zalogowany jako:  <span th:text="${session.patientLogin}"></span></h5>
 <h1 class="text-center">Umawianie wizyty </h1>
 <h3 class="text-center">Dostępne godziny </h3>
 
 <form method="post" action="/hour" th:action="@{/hour}" th:object="${hours}" >
     <div class="container">
-
         <div>
-
 
             <div style="display: inline-block">
             <label><i class=" glyphicon glyphicon-time"></i> Godzina</label>
@@ -38,20 +36,15 @@
                         th:value="${hr}"
                         th:text="${hr}">
                 </option>
-
             </select>
-
             </div>
-
-
             <p></p>
-
         </div>
         <p>
             <input class="btn btn-primary" type="submit" value="Zapisz"/>
             <input class="btn btn-default" type="reset" value="Anuluj"/>
+            <input class="btn btn-default" type="button" onclick="window.history.back()" value="Wstecz"/>
         </p>
-
     </div>
 </form>
 </body>

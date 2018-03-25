@@ -43,8 +43,19 @@ public class LoginController {
         }else{
             return "redirect:./login?error";
         }
+    }
+
+    @RequestMapping(value = "/login?logout", method = RequestMethod.GET)
+    public String logout(HttpServletRequest request)
+           throws IOException {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.removeAttribute("patientLogin");
+            session.removeAttribute("patientId");
+            session.invalidate();
+        }
+        return "/login?logout";
+}
 
     }
 
-
-}
