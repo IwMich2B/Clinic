@@ -54,6 +54,8 @@ public class OrderVisitController {
         final ModelAndView modelAndView = new ModelAndView("specialization");
         modelAndView.addObject("specialization", specializationRepository.findAll());
         HttpSession session = request.getSession();
+        session.removeAttribute("specializationName");
+        session.removeAttribute("specialization");
         return modelAndView;
     }
 
@@ -69,6 +71,11 @@ public class OrderVisitController {
     @RequestMapping(path = "/doctor", method = RequestMethod.GET)
     public ModelAndView doctor(@ModelAttribute(value = "specialization") SpecializationForm specialization, HttpServletRequest request, Patient patient) {
         final ModelAndView modelAndView = new ModelAndView("doctor");
+
+        HttpSession session = request.getSession();
+        session.removeAttribute("doctorId");
+        session.removeAttribute("visitData");
+        session.removeAttribute("doctor");
 
         long specializationId = (long) request.getSession().getAttribute("specialization");
         modelAndView.addObject("doctor", doctorJpaRepository.findBySpecializationId(specializationId));
