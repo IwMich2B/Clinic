@@ -16,8 +16,8 @@
 
             <li><a href="/menu">Strona główna</a></li>
             <li><a href="/login?logout">Wyloguj</a></li>
-            <li><a href="/order">Umów wizytę </a></li>
-            <li class="active"><a href="/lista">Sprawdź wizyty </a></li>
+            <li><a href="/specialization">Umów wizytę </a></li>
+            <li class="active"><a href="/lista">Moje wizyty </a></li>
 
 
         </ul>
@@ -59,7 +59,7 @@
             <td th:text="${visit.name+' ' +visit.lastname}"></td>
             <td th:text="${visit.dateTime}"></td>
             <td th:text="${visit.hoursVisit}"></td>
-            <td> <a class="bg-danger" th:href="@{/odwolaj(id=${visit.id})}">Usuń</a></td>
+            <td> <a class="bg-danger" th:href="@{/odwolaj(id=${visit.id})}">Odwołaj</a></td>
 
         </tr>
         </tbody>
