@@ -16,7 +16,7 @@ public class Visit {
             allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
             generator = "visits_sql")
-    private long id;
+    private Long id;
     @NotNull
     @OneToOne
     @JoinColumn(name = "id_doctor")
@@ -39,20 +39,14 @@ public class Visit {
         this.dateTime = dateTime;
         this.hoursVisit = hoursVisit;
     }
-//    public Visit(long id, Doctor doctor, Patient patient, String dateTime, String hoursVisit) {
-//        this.id = id;
-//        this.doctor = doctor;
-//        this.patient = patient;
-//        this.dateTime = dateTime;
-//        this.hoursVisit = hoursVisit;
-//    }
 
 
-    public long getId() {
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -3,7 +3,7 @@ package pl.sda.clinic.dto;
 import java.util.Date;
 
 public class VisitDto {
-    private long id;
+    private Long id;
     private String specializacja;
     private String name;
     private String lastname;
@@ -13,7 +13,7 @@ public class VisitDto {
     public VisitDto() {
     }
 
-    public VisitDto(int id, String specializacja, String name, String lastname, String dateTime, String hoursVisit) {
+    public VisitDto(Long id, String specializacja, String name, String lastname, String dateTime, String hoursVisit) {
         this.id = id;
         this.specializacja = specializacja;
         this.name = name;
@@ -22,11 +22,11 @@ public class VisitDto {
         this.hoursVisit = hoursVisit;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
