@@ -49,4 +49,15 @@ public class VisitRepository implements IVisitRepository {
         }
         return results;
     }
+    @Override
+    public Visit findById(Long id) {
+        return visitJpaRepository.findById(id);
+    }
+
+    @Override
+    public void delete(Long id) {
+       // if(visitJpaRepository.exists(id)){
+            visitJpaRepository.delete(id);
+       // }
+    }
 }

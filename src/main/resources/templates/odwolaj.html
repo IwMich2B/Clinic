@@ -16,37 +16,30 @@
 
             <li><a href="/menu">Strona główna</a></li>
             <li><a href="/login?logout">Wyloguj</a></li>
-            <li><a href="/order">Umów wizytę </a></li>
-            <li class="active"><a href="/lista">Sprawdź wizyty </a></li>
+            <li><a href="umow">Umów wizytę </a></li>
+            <li class="active"><a href="/odwolaj">Odwołaj wizytę </a></li>
+            <li><a href="/lista">Sprawdź wizyty </a></li>
+
 
 
         </ul>
     </div>
 </nav>
-<h5 class="text-right">Jesteś zalogowany jako:  <span th:text="${session.patientLogin}"></span></h5>
 
-<div th:if="${deleted}" class="alert alert-success">
 
-    <center > Wizyta została odwołana!</center>
-</div>
-<h1 class="text-center">Lista Umówionych Wizyt</h1>
-
-<form method="post" action="/lista" th:action="@{/lista}" th:object="${visit}">
-
+<h1 class="text-center">Twoja wizyta którą chcesz usunąć</h1>
 <div class="container">
-    <table class="table table-bordered table-responsive-md">
+    <table class="table table-bordered table-responsive-md" >
 
 
         <thead>
 
         <tr>
 
-
             <td>Specjalizacja</td>
             <td>Lekarz</td>
             <td>Dzień</td>
             <td>Godzina</td>
-            <td>Odwołaj wizyte</td>
 
 
         </tr>
@@ -54,21 +47,34 @@
         </thead>
         <tbody>
 
-        <tr th:each="visit : ${visits}">
+
+
+        <tr>
             <td th:text="${visit.specializacja}"></td>
             <td th:text="${visit.name+' ' +visit.lastname}"></td>
             <td th:text="${visit.dateTime}"></td>
             <td th:text="${visit.hoursVisit}"></td>
-            <td> <a class="bg-danger" th:href="@{/odwolaj(id=${visit.id})}">Usuń</a></td>
-
         </tr>
         </tbody>
     </table>
+    <p>Jesli nie chcesz usunać wizyte naciśnij przycisk Anuluj</p>
+    <button type="button" class="btn btn-info" onclick="window.location='/lista'">Anuluj</button>
+    <p>Jesli chcesz usunać wizyte naciśnij przycisk Usuń</p>
+    <form name="deleteform" th:action="@{/delete}" th:method="DELETE" >
 
-</div>
+
+        <input type="hidden" th:name="id_visit" th:value="${visit.id}"/>
+            <button type="submit" class="btn btn-info">Usuń</button>
+
+    </form>
+
+
+
+
+
+        </div>
 <script type="text/javascript"
         src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 
-</form>
 </body>
 </html>
