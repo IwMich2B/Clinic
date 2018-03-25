@@ -34,22 +34,16 @@
                 Sesja została zakończona.
             </div>
             <tr>
-                <td>login:</td>
-                <td>hasło:</td>
+                <td>login:<input type="text" th:field="*{login}"/></td>
+            </tr>
+            <tr>
+                <td>hasło:<input type="password" th:field="*{password}"/></td>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>
-                    <input type="text" th:field="*{login}"/>
-                </td>
-                <td>
-                    <input type="password" th:field="*{password}"/>
-                </td>
-            </tr>
             </tbody>
         </table>
-        <button type="submit">ZALOGUJ</button>
+        <button type="submit" class="btn btn-primary">ZALOGUJ</button>
     </form>
 </div>
 </body>
