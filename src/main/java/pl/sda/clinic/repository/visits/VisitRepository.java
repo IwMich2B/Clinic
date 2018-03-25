@@ -52,7 +52,18 @@ public class VisitRepository implements IVisitRepository {
         }
         return reservedVisits;
     }
-//        return harmonogramm.getHarmonogramItemList();
+
+    @Override
+    public Visit findById(Long id) {
+        return visitJpaRepository.findById(id);
+    }
+
+    @Override
+    public void delete(Long id) {
+       // if(visitJpaRepository.exists(id)){
+            visitJpaRepository.delete(id);
+       // }
+    }
 
 
 }

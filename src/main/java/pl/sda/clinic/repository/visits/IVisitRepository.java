@@ -9,5 +9,7 @@ public interface IVisitRepository {
     List<Visit> findByPatient_Id (Long id);
 
     List<Visit> findVisitsByDoctorIdAndData(Long id, String data);
+    Visit findById (Long id);
+    void delete(Long id);
 
 }

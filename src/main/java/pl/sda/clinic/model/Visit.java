@@ -1,5 +1,9 @@
 package pl.sda.clinic.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import pl.sda.clinic.dto.VisitDto;
+import pl.sda.clinic.repository.specialization.SpecializationRepository;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -42,6 +46,7 @@ public class Visit {
 //        this.dateTime = dateTime;
 //        this.hoursVisit = hoursVisit;
 //    }
+
 
     public long getId() {
         return id;

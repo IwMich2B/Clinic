@@ -17,7 +17,6 @@
             <li><a href="/menu">Strona główna</a></li>
             <li><a href="/login?logout">Wyloguj</a></li>
             <li><a href="/order">Umów wizytę </a></li>
-            <li><a href="/odwolaj">Odwołaj wizytę </a></li>
             <li class="active"><a href="/lista">Sprawdź wizyty </a></li>
 
 
@@ -25,6 +24,11 @@
     </div>
 </nav>
 
+
+<div th:if="${deleted}" class="alert alert-success">
+
+    <center > Wizyta została odwołana!</center>
+</div>
 <h1 class="text-center">Lista Umówionych Wizyt</h1>
 
 <form method="post" action="/lista" th:action="@{/lista}" th:object="${visit}">
@@ -42,6 +46,7 @@
             <td>Lekarz</td>
             <td>Dzień</td>
             <td>Godzina</td>
+            <td>Odwołaj wizyte</td>
 
 
         </tr>
@@ -54,12 +59,12 @@
             <td th:text="${visit.name+' ' +visit.lastname}"></td>
             <td th:text="${visit.dateTime}"></td>
             <td th:text="${visit.hoursVisit}"></td>
-            <td th:text="${visit.id}"></td>
+            <td> <a class="bg-danger" th:href="@{/odwolaj(id=${visit.id})}">Usuń</a></td>
 
         </tr>
         </tbody>
     </table>
-    <button type="button" class="btn btn-info" value="">Anuluj</button>
+
 </div>
 <script type="text/javascript"
         src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
