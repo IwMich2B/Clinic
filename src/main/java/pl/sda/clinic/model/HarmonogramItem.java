@@ -27,6 +27,10 @@ public class HarmonogramItem {
         this.isAvailable = isAvailable;
     }
 
+    public HarmonogramItem(String hour) {
+        this.hour = hour;
+    }
+
     public long getHarmonogramItemId() {
         return harmonogramItemId;
     }

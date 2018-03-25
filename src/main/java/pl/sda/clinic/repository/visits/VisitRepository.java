@@ -26,33 +26,27 @@ public class VisitRepository implements IVisitRepository {
     }
 
     @Override
-    public List<Visit> findVisitsByDoctorIdAndData(Long id, String data) {
-        final List<Visit> doctorVisit = visitJpaRepository.findByDoctor_Id(id);
-//        HarmonogramItem hour = new HarmonogramItem();
+    public List<String> findVisitsByDoctorIdAndData(Long id, String data) {
+        HarmonogramItem harmonogramItem = new HarmonogramItem();
+        List<Visit> visits = visitJpaRepository.findVisitsByDoctor_IdAndDateTime(id, data);
+        List<String> allHours = harmonogramItem.createTimetable();
 
-        Harmonogram harmonogram = new Harmonogram();
-        List<HarmonogramItem> harmonograms = harmonogram.getHarmonogramItemList();
+        List<String> results = new ArrayList<>();
+        for (String allHour : allHours) {
+            boolean isBusy = false;
+            {
+                for (Visit visit : visits) {
+                    if (visit.getHoursVisit().equals(allHour)){
+                        isBusy = true;
+                    break;}
+                }
+                if (!isBusy) {
+                    results.add(allHour);
 
-        List<HarmonogramItem> allHours = hourRepository.getHoursByDoctor(id);
-
-
-//        List<String> allHours = hour.createTimetable();
-        final List<Visit> reservedVisits = new ArrayList<>();
-
-        for (final Visit visit : doctorVisit) {
-            if (visit.getDateTime().equals(data)) {
-
-                for (final HarmonogramItem time : allHours) {
-
-                    if (!visit.getHoursVisit().equals(time.toString())) {
-                        reservedVisits.add(visit);
-                    }
                 }
             }
+
         }
-        return reservedVisits;
+        return results;
     }
-//        return harmonogramm.getHarmonogramItemList();
-
-
 }

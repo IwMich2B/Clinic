@@ -7,8 +7,10 @@ import pl.sda.clinic.model.Visit;
 import java.util.List;
 
 
-public interface VisitJpaRepository extends CrudRepository<Visit,Long> {
-    List<Visit> findByPatient_Id (Long id);
+public interface VisitJpaRepository extends CrudRepository<Visit, Long> {
+    List<Visit> findByPatient_Id(Long id);
 
     List<Visit> findByDoctor_Id(Long id);
+
+    List<Visit> findVisitsByDoctor_IdAndDateTime(Long id, String data);
 }
