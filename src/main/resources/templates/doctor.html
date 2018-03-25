@@ -8,19 +8,7 @@
 
 </head>
 <body>
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">Menu</a>
-        </div>
-        <ul class="nav navbar-nav">
-            <li><a href="/menu">Strona główna</a></li>
-            <li><a href="/lista">Moje wizyty</a></li>
-            <li><a href="/login?logout">Wyloguj</a></li>
-        </ul>
-    </div>
-</nav>
-<h5 class="text-right">Jesteś zalogowany jako:  <span th:text="${session.patientLogin}"></span></h5>
+<th:block th:id="header" th:include="_menus :: title-menu" />
 <h1 class="text-center">Umawianie wizyty </h1>
 <h3 class="text-center">Wybierz lekarza </h3>
 
