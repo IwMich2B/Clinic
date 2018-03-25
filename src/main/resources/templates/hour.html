@@ -25,7 +25,7 @@
 <h1 class="text-center">Umawianie wizyty </h1>
 <h3 class="text-center">Dostępne godziny </h3>
 
-<form method="post" action="/hour" th:action="@{/hour}" th:object="${doctorForm}">
+<form method="post" action="/hour" th:action="@{/hour}" th:object="${hours}" >
     <div class="container">
 
         <div>
@@ -33,10 +33,10 @@
 
             <div style="display: inline-block">
             <label><i class=" glyphicon glyphicon-time"></i> Godzina</label>
-            <select class="form-control" id="hours" th:name="hours">
-                <option th:each="hr : ${hours}"
-                        th:value="${hr.harmonogramItemId}"
-                        th:text="${hr.hour}">
+            <select class="form-control" id="hours" th:name="hour">
+                <option th:each="hr : ${hour}"
+                        th:value="${hr}"
+                        th:text="${hr}">
                 </option>
 
             </select>

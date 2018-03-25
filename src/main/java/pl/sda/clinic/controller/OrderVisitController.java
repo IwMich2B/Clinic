@@ -87,12 +87,16 @@ public class OrderVisitController {
     }
 
     @RequestMapping(path = "/hour", method = RequestMethod.GET)
-    public ModelAndView getHourView(@ModelAttribute(value = "doctor") Doctor doctor, HttpServletRequest request) {
+    public ModelAndView getHourView(@ModelAttribute(value = "doctor") Doctor doctor,
+                                    @ModelAttribute(value = "data") String data,
+                                            HttpServletRequest request) {
         long doctorId = (long) request.getSession().getAttribute("doctorId");
+        String dataVisit = (String) request.getSession().getAttribute("visitData");
         final ModelAndView modelAndView = new ModelAndView("hour");
-        modelAndView.addObject("hours", hourRepository.getHoursByDoctor(doctorId));
-//        modelAndView.addObject("hours",
-//                visitRepository.findVisitsByDoctorIdAndData(doctorId, (String) request.getSession().getAttribute("visitData")));
+//        modelAndView.addObject("hours", visitRepository.findVisitsByDoctorIdAndData(doctorId,dataVisit));
+////                hourRepository.getHoursByDoctor(doctorId));
+        modelAndView.addObject("hour",
+                visitRepository.findVisitsByDoctorIdAndData(doctorId, (String) request.getSession().getAttribute("visitData")));
         return modelAndView;
     }
 

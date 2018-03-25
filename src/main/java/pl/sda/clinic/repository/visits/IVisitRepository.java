@@ -8,6 +8,6 @@ public interface IVisitRepository {
 
     List<Visit> findByPatient_Id (Long id);
 
-    List<Visit> findVisitsByDoctorIdAndData(Long id, String data);
+    List<String> findVisitsByDoctorIdAndData(Long id, String data);
 
 }
