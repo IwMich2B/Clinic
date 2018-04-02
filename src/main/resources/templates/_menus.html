@@ -21,13 +21,13 @@
 
             <div th:if="${(session.patientId != null) and (session.patientLogin != null)}">
                 <ul class="nav navbar-nav">
-                    <li th:class="${#vars.adresik == '/menu'} ? 'nav-item active''"><a class="nav-link"
+                    <li th:class="${#vars.adresik == '/menu'} ? 'nav-item active'"><a class="nav-link"
                                                                                        href="/menu"><span
                             class="glyphicon glyphicon-home"></span>&nbsp;Strona główna</a></li>
-                    <li th:class="${#vars.adresik == '/specialization'} ? 'nav-item active''"><a
+                    <li th:class="${#vars.adresik == '/specialization'} ? 'nav-item active'"><a
                             class="nav-link" href="/specialization"><span
                             class="glyphicon glyphicon-plus"></span>&nbsp;Umów wizytę</a></li>
-                    <li th:class="${#vars.adresik == '/lista'} ? 'nav-item active''"><a class="nav-link"
+                    <li th:class="${#vars.adresik == '/lista'} ? 'nav-item active'"><a class="nav-link"
                                                                                         href="/lista"><span
                             class="glyphicon glyphicon-calendar"></span>&nbsp;Moje wizyty</a></li>
                 </ul>
