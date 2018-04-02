@@ -3,19 +3,17 @@ package pl.sda.clinic.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.sda.clinic.dto.VisitDto;
-import pl.sda.clinic.mapper.MappVisit;
+import pl.sda.clinic.mapper.MapVisit;
 import pl.sda.clinic.model.Visit;
 import pl.sda.clinic.repository.specialization.SpecializationRepository;
 import pl.sda.clinic.repository.visits.VisitRepository;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +26,7 @@ public class VisitsController {
     @Autowired
     SpecializationRepository specializationRepository;
     @Autowired
-    MappVisit mappVisit;
+    MapVisit mapVisit;
 
 
     @RequestMapping(path = "/lista", method = RequestMethod.GET)
@@ -39,7 +37,7 @@ public class VisitsController {
             //VisitDto visitDto = new VisitDto();
             List<VisitDto> visitDtoList = new ArrayList<>();
             for (Visit visit : visits) {
-                VisitDto visitDto = mappVisit.mapVisit(visit, specializationRepository);
+                VisitDto visitDto = mapVisit.mapVisit(visit, specializationRepository);
                 visitDtoList.add(visitDto);
             }
             model.addAttribute("deleted", deleted);
@@ -72,7 +70,7 @@ public class VisitsController {
                 ) {
 
             Visit visitUsun = visitRepository.findById(id);
-            VisitDto visitDto = mappVisit.mapVisit(visitUsun, specializationRepository);
+            VisitDto visitDto = mapVisit.mapVisit(visitUsun, specializationRepository);
             model.addAttribute("visit", visitDto);
             return "odwolaj";
 

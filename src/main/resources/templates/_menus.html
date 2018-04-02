@@ -1,33 +1,56 @@
 <html lang="pl" xmlns:th="http://www.thymeleaf.org">
 
+
 <th:block th:fragment="title-menu">
+    <style>
+        .navbar-default {
+            background-color: #e3f2fd;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+        }
+    </style>
+
     <nav class="navbar navbar-default" th:with="adresik=${#httpServletRequest.requestURI}">
         <div class="container-fluid">
 
-            <div class="navbar-header"  style="color:#dbf0db">
+            <div class="navbar-header">
                 <a class="navbar-brand" href="#">Health Clinic</a>
             </div>
 
             <div th:if="${(session.patientId != null) and (session.patientLogin != null)}">
                 <ul class="nav navbar-nav">
-                    <li th:class="${#vars.adresik == '/menu'} ? active"><a href="/menu"><span class="glyphicon glyphicon-home"></span>&nbsp;Strona główna</a></li>
-                    <li th:class="${#vars.adresik == '/specialization'} ? active"><a href="/specialization"><span class="glyphicon glyphicon-plus"></span>&nbsp;Umów wizytę</a></li>
-                    <li th:class="${#vars.adresik == '/lista'} ? active"><a href="/lista"><span class="glyphicon glyphicon-calendar"></span>&nbsp;Moje wizyty</a></li>
+                    <li th:class="${#vars.adresik == '/menu'} ? 'nav-item active'"><a class="nav-link"
+                                                                                       href="/menu"><span
+                            class="glyphicon glyphicon-home"></span>&nbsp;Strona główna</a></li>
+                    <li th:class="${#vars.adresik == '/specialization'} ? 'nav-item active'"><a
+                            class="nav-link" href="/specialization"><span
+                            class="glyphicon glyphicon-plus"></span>&nbsp;Umów wizytę</a></li>
+                    <li th:class="${#vars.adresik == '/lista'} ? 'nav-item active'"><a class="nav-link"
+                                                                                        href="/lista"><span
+                            class="glyphicon glyphicon-calendar"></span>&nbsp;Moje wizyty</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><span class="glyphicon glyphicon-user"></span>&nbsp;<span th:utext="'Zalogowany jako: ' + ${session.patientLogin}"></span></li>
-                    <li><a href="/login?logout">Wyloguj</a></li>
+                    <li><span class="glyphicon glyphicon-user"></span>&nbsp;<span
+                            th:utext="'Zalogowany jako: ' + ${session.patientLogin}"></span></li>
+                    <li><a class="nav-link" href="/logout">Wyloguj</a></li>
                 </ul>
 
             </div>
 
             <div th:if="${(session.patientId == null) or (session.patientLogin == null)}">
                 <ul class="nav navbar-nav">
-                    <li th:class="${#vars.adresik == '/menu'} ? active"><a href="/menu"><span class="glyphicon glyphicon-home"></span>&nbsp;Strona główna</a></li>
+                    <li th:class="${#vars.adresik == '/menu'} ? 'nav-item active'"><a class="nav-link"
+                                                                                      href="/menu"><span
+                            class="glyphicon glyphicon-home"></span>&nbsp;Strona główna</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li th:class="${#vars.adresik == '/login'} ? active"><a href="/login">Zaloguj</a></li>
-                    <li th:class="${#vars.adresik == '/register'} ? active"><a href="/register">Zarejestruj</a></li>
+                    <li th:class="${#vars.adresik == '/login'} ? 'nav-item active'"><a class="nav-link" href="/login">Zaloguj</a>
+                    </li>
+                    <li th:class="${#vars.adresik == '/register'} ? 'nav-item active'"><a class="nav-link"
+                                                                                          href="/register">Zarejestruj</a>
+                    </li>
                 </ul>
 
             </div>
