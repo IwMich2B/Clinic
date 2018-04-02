@@ -5,7 +5,7 @@ import pl.sda.clinic.dto.VisitDto;
 import pl.sda.clinic.model.Visit;
 import pl.sda.clinic.repository.specialization.SpecializationRepository;
 @Component
-public class MappVisit {
+public class MapVisit {
     public VisitDto mapVisit(Visit visit , SpecializationRepository specializationRepository) {
         VisitDto visitDto = new VisitDto();
         visitDto.setId(visit.getId());
